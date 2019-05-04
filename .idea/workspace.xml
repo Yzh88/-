@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fc94200-a89e-4a77-af27-3cb5aa39079a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sxl/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sxl/http_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HTTPServer/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HTTPServer/httpserver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySQLDate/insertdata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/frame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ljl.py" beforeDir="false" afterPath="$PROJECT_DIR$/ljl.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +18,17 @@
     <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ljl.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTTPServer/config.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HTTPServer/httpserver.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -31,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../桌面/sxl/sxl_pro/1902/month02_lz/day13/git">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
+            <state relative-caret-position="-1969">
+              <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -124,7 +133,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1533" height="875" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11795891" />
@@ -146,13 +154,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ljl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sxl/http_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -162,10 +163,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../桌面/sxl/sxl_pro/1902/month02_lz/day13/git">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
+        <state relative-caret-position="-1969">
+          <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ljl.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTTPServer/config.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTTPServer/httpserver.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
