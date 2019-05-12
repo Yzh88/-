@@ -140,6 +140,7 @@ body {
     border-radius: 10px;
     font-size: 18px;
     color: darkblue;
+    outline: none;
 }
 
 #l6 {
