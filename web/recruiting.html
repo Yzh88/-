@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="recrulting.css">
+    <script>
+        var num = 0;
+        function number(){
+            num++;
+            return num;
+        }
+
+    </script>
+</head>
+<!--序号num 姓名name 电话tel 生日birthday 性别 sex-->
+<!--籍贯native学历education-->
+<!--申请职位want_job期望薪资hope_wage-->
+<!--申请时间apply_time审核状态status-->
+
+<body bgcolor="pink">
+    <div id="loder">招聘管理</div>
+    <div id="main">
+        <form action="" method="get" enctype="">
+            <div id="rec">
+            <h3>应聘部门:</h3>
+            <select id="select1">
+                <option>财务部</option>
+                <option>人事部</option>
+                <option>销售部</option>
+                <option>技术部</option>
+                <option>管理部</option>
+            </select>
+            </div>
+            <div id="num">
+            部门需要人数：
+                <input type="text" >
+            </div>
+        </form>
+        <table border="1px">
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>电话</td>
+                <td>生日</td>
+                <td>性别</td>
+                <td>籍贯</td>
+                <td>申请职位</td>
+                <td>期望薪资</td>
+                <td>申请时间</td>
+                <td>审核状态</td>
+            </tr>
+            <tr>
+                <td onclick="consloe.log(number())" ></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td>
+                    <select id="select2">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td>空</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
