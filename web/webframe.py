@@ -1,6 +1,5 @@
 """
 模拟网站后端应用程序工作
-
 """
 import json
 from select import select
