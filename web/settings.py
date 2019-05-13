@@ -11,5 +11,5 @@ frame_port = 8080
 DEBUG = True
 
 # [save html pages]
-STATIC_DIR = './web/static'
+STATIC_DIR = '/home/tarena/project/web/static'
 
