@@ -61,7 +61,7 @@ class Application(object):
 
     def get_html(self, info):
         if info == '/':
-            filename = STATIC_DIR + '/index.html'
+            filename = STATIC_DIR + '/login.html'
         else:
             filename = STATIC_DIR + info
         try:
