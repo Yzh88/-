@@ -39,7 +39,7 @@ class Application(object):
         request = connfd.recv(1024).decode()
         request = json.loads(request)
 
-        # request -> {'method':'GET','info':'/'}
+        # request = {'method': 'GET', 'info': '/'}
         if request['method'] == 'GET':
             if request['info'] == '/' or request['info'][-5:] == '.html':
                 response = self.get_html(request['info'])
@@ -67,16 +67,17 @@ class Application(object):
         try:
             fd = open(filename)
         except Exception as e:
+            print(e)
             f = open(STATIC_DIR + "/404.html")
             return {'status': '404', 'data': f.read()}
         else:
-            return {'status':'200', 'data':fd.read()}
+            return {'status': '200', 'data': fd.read()}
 
     def get_data(self, info):
         for url, func in urls:
             if url == info:
-                return {'status':'200', 'data':func()}
-        return {'status':'404', 'data':'sorry,...'}
+                return {'status': '200', 'data': func()}
+        return {'status': '404', 'data': 'sorry,...'}
 
 
 if __name__ == '__main__':
