@@ -36,18 +36,22 @@ class Application(object):
         response = ""
         # request = {'method': 'GET', 'info': '/'}
         if request['method'] == 'GET':
-            if request['info'] == '/' or request['info'][-5:] == '.html':
-                response = self.get_html(request['info'])
+            # if request['info'] == '/' or request['info'][-5:] == '.html':
+            response = self.get_html(request['info'])
             # else:
             #     response = self.get_data(request['info'])
-
         elif request['method'] == 'POST':
             pass
-
         # 将数据发送给Http_Server
-        response = json.dumps(response)
-        conn_fd.send(response.encode())
-        conn_fd.close()
+        try:
+            response = json.dumps(response)
+        except TypeError:
+            conn_fd.send(response)
+            conn_fd.close()
+        else:
+            conn_fd.send(response.encode())
+        finally:
+            conn_fd.close()
 
         #   测试
         # print(request.decode(), 222)
@@ -55,7 +59,17 @@ class Application(object):
         # conn_fd.send(json.dumps(dict).encode())
 
     @staticmethod
-    def get_html(info):
+    def get_type(info):
+        info = info[-6:]
+        con_list = info.split(".")
+        try:
+            con_type = con_list[1]
+        except IndexError:
+            return
+        print(con_type)
+        return CON_DICT[con_type]
+
+    def get_html(self, info):
         if info == '/':
             filename = WEB_DIR + '/login.html'
         else:
@@ -65,10 +79,21 @@ class Application(object):
         except Exception as e:
             print(e)
             f = open(WEB_DIR + "/404.html")
-            return {'status': '404', 'data': f.read()}
+            data = f.read()
+            f.close()
+            return {"type": "text/html", 'status': '404', 'data': data}
         else:
-            return {'status': '200', 'data': fd.read()}
-
+            content = self.get_type(info)
+            try:
+                data = fd.read()
+            except UnicodeDecodeError:
+                fd.close()
+                fd = open(filename, "rb")
+                data = fd.read()
+                fd.close()
+                return data
+            fd.close()
+            return {"type": "%s" % content, 'status': '200', 'data': data}
     # def get_data(self, info):
     #     for url, func in urls:
     #         if url == info:
