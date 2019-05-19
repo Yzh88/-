@@ -20,7 +20,6 @@ def connect_frame(env):
         data = s.recv(4096 * 100).decode()
     except UnicodeDecodeError:
         data = s.recv(4096 * 100)
-        data = base64.b64encode(data)
         return {"type": "image/jpeg", 'status': '200', 'data': data}
     else:
         return json.loads(data)  # 返回数据字典
@@ -86,10 +85,20 @@ class HTTPServer(object):
         # 将数据发送给浏览器
         if con_type is None:
             return
+        elif con_type == "image/jpeg":
+            header_str = "content-type" + con_type + "\r\n"
+            response_headers += header_str
+            response_headers += '\r\n'
+            response_headers += 'accept-range:bytes\r\n'
+            response_headers += 'content-length:%d\r\n' % len(data["data"])
+            response_body = base64.encodebytes(data['data'])
+            response_data = response_headers.encode() + response_body
         else:
             header_str = "content-type" + con_type + "\r\n"
-        response_headers += header_str
-        response_headers += '\r\n'
-        response_body = data['data']
-        response_data = response_headers + response_body
-        conn_fd.send(response_data.encode())
+            response_headers += header_str
+            response_headers += '\r\n'
+            response_body = data['data']
+            response_data = response_headers + response_body
+            response_data = response_data.encode()
+        conn_fd.send(response_data)
+        print(response_data.decode())
