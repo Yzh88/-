@@ -3,6 +3,7 @@ import re
 from socket import *
 from threading import Thread
 from config.web_config import *
+import base64
 
 
 # 和web建立连接
@@ -19,6 +20,7 @@ def connect_frame(env):
         data = s.recv(4096 * 100).decode()
     except UnicodeDecodeError:
         data = s.recv(4096 * 100)
+        data = base64.b64encode(data)
         return {"type": "image/jpeg", 'status': '200', 'data': data}
     else:
         return json.loads(data)  # 返回数据字典
