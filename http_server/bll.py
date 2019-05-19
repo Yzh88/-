@@ -2,7 +2,6 @@ import json
 import re
 from socket import *
 from threading import Thread
-from config.http_config import *
 from config.web_config import *
 
 
@@ -29,6 +28,7 @@ class HTTPServer(object):
         self.bind()
 
     # 创建套接字
+    @staticmethod
     def create_socket(self):
         self.sock_fd = socket()
         self.sock_fd.setsockopt(SOL_SOCKET, SO_REUSEADDR, DEBUG)
@@ -70,16 +70,8 @@ class HTTPServer(object):
         response_headers = ""
         if data['status'] == '200':
             response_headers = 'HTTP/1.1 200 OK\r\n'
-            # response_headers += 'Content-Type:text/html\r\n'
-            # response_headers += '\r\n'
-            # response_body = data['data']
-
         elif data['status'] == '404':
             response_headers = 'HTTP/1.1 404 Not Found\r\n'
-            # response_headers += 'Content-Type:text/html\r\n'
-            # response_headers += '\r\n'
-            # response_body = data['data']
-
         elif data['status'] == '500':
             pass
         # 将数据发送给浏览器
