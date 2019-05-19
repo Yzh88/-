@@ -28,7 +28,6 @@ class HTTPServer(object):
         self.bind()
 
     # 创建套接字
-    @staticmethod
     def create_socket(self):
         self.sock_fd = socket()
         self.sock_fd.setsockopt(SOL_SOCKET, SO_REUSEADDR, DEBUG)
