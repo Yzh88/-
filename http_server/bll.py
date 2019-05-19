@@ -4,12 +4,10 @@ from socket import *
 from threading import Thread
 
 from config.http_config import *
-
-# 服务器地址
-ADDR = (HOST, PORT)
+from config.web_config import *
 
 
-# 和web
+# 和web建立连接
 def connect_frame(env):
     s = socket()
     try:
@@ -23,70 +21,70 @@ def connect_frame(env):
     return json.loads(data)  # 返回数据字典
 
 
-# 封装httpserver基本协议
+# 封装http_server基本协议
 class HTTPServer(object):
     def __init__(self, address):
         self.address = address
-        self.create_socket()
+        self.sock_fd = socket()
+        self.sock_fd.setsockopt(SOL_SOCKET, SO_REUSEADDR, DEBUG)
         self.bind()
-
-    # 创建套接字
-    def create_socket(self):
-        self.sockfd = socket()
-        self.sockfd.setsockopt(SOL_SOCKET, SO_REUSEADDR, DEBUG)
-
-    # 绑定地址
-    def bind(self):
-        self.sockfd.bind(self.address)
         self.ip = self.address[0]
         self.port = self.address[1]
 
+    # 创建套接字
+    # def create_socket(self):
+
+    # 绑定地址
+    def bind(self):
+        self.sock_fd.bind(self.address)
+
     def serve_forever(self):
-        self.sockfd.listen(5)
+        self.sock_fd.listen(5)
         print('Listen the port %d...' % self.port)
         while True:
-            connfd, addr = self.sockfd.accept()
+            conn_fd, addr = self.sock_fd.accept()
             print('Connect from ', addr)
-            client = Thread(target=self.handle, args=(connfd,))
+            client = Thread(target=self.handle, args=(conn_fd,))
             client.setDaemon(True)
             client.start()
 
-    def handle(self, connfd):
-        request = connfd.recv(4096).decode()
+    def handle(self, conn_fd):
+        request = conn_fd.recv(4096).decode()
         print(request)
         pattern = r'(?P<method>[A-Z]+)\s+(?P<info>/\S*)'
         try:
             env = re.match(pattern, request).groupdict()
         except:
-            connfd.close()
+            conn_fd.close()
             return
         else:
             print(env, 111)
             data = connect_frame(env)
             if data:
-                self.response(connfd, data)
+                self.response(conn_fd, data)
 
     # 将数据整理为response格式发送给浏览器
-    def response(self, connfd, data):
+    @staticmethod
+    def response(conn_fd, data):
         # data {'status':200,'data':content}
         if data['status'] == '200':
-            responseHeaders = 'HTTP/1.1 200 OK\r\n'
-            responseHeaders += 'Content-Type:text/html\r\n'
-            responseHeaders += '\r\n'
-            responseBody = data['data']
+            response_headers = 'HTTP/1.1 200 OK\r\n'
+            response_headers += 'Content-Type:text/html\r\n'
+            response_headers += '\r\n'
+            response_body = data['data']
 
         elif data['status'] == '404':
-            responseHeaders = 'HTTP/1.1 404 Not Found\r\n'
-            responseHeaders += 'Content-Type:text/html\r\n'
-            responseHeaders += '\r\n'
-            responseBody = data['data']
+            response_headers = 'HTTP/1.1 404 Not Found\r\n'
+            response_headers += 'Content-Type:text/html\r\n'
+            response_headers += '\r\n'
+            response_body = data['data']
 
         elif data['status'] == '500':
             pass
 
         # 将数据发送给浏览器
-        response_data = responseHeaders + responseBody
-        connfd.send(response_data.encode())
+        response_data = response_headers + response_body
+        conn_fd.send(response_data.encode())
 
 
 if __name__ == '__main__':
