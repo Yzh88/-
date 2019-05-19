@@ -3,7 +3,6 @@ import re
 from socket import *
 from threading import Thread
 from config.web_config import *
-import base64
 
 
 # 和web建立连接
@@ -91,14 +90,14 @@ class HTTPServer(object):
             response_headers += 'accept-range:bytes\r\n'
             response_headers += 'content-length:%d\r\n' % len(data["data"])
             response_headers += '\r\n'
-            response_body = base64.encodebytes(data['data'])
-            response_data = response_headers.encode() + response_body
+            response_body = str(data['data'])
+            response_data = response_headers.encode() + response_body.encode()
         else:
-            header_str = "content-type" + con_type + "\r\n"
+            header_str = "content-type:" + con_type + "\r\n"
             response_headers += header_str
             response_headers += '\r\n'
             response_body = data['data']
             response_data = response_headers + response_body
             response_data = response_data.encode()
         conn_fd.send(response_data)
-        print(response_data.decode())
+        # print(response_data.decode())
