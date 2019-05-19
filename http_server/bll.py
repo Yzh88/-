@@ -11,7 +11,7 @@ from config.web_config import *
 def connect_frame(env):
     s = socket()
     try:
-        s.connect((frame_ip, frame_port))  # 连接 webframe
+        s.connect((frame_ip, frame_port))  # 连接 web_frame
     except Exception as e:
         print(e)
         return
@@ -25,14 +25,14 @@ def connect_frame(env):
 class HTTPServer(object):
     def __init__(self, address):
         self.address = address
-        self.sock_fd = socket()
-        self.sock_fd.setsockopt(SOL_SOCKET, SO_REUSEADDR, DEBUG)
-        self.bind()
         self.ip = self.address[0]
         self.port = self.address[1]
+        self.bind()
 
     # 创建套接字
-    # def create_socket(self):
+    def create_socket(self):
+        self.sock_fd = socket()
+        self.sock_fd.setsockopt(SOL_SOCKET, SO_REUSEADDR, DEBUG)
 
     # 绑定地址
     def bind(self):
@@ -54,7 +54,8 @@ class HTTPServer(object):
         pattern = r'(?P<method>[A-Z]+)\s+(?P<info>/\S*)'
         try:
             env = re.match(pattern, request).groupdict()
-        except:
+        except Exception as e:
+            print(e)
             conn_fd.close()
             return
         else:
