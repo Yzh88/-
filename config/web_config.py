@@ -13,5 +13,5 @@ CON_DICT = {
     "html": "text/html",
     "css": "text/css",
     "js": "application/x-javascript",
-    "jpg": "application/x-jpg"
+    "jpg": "image/jpeg"
 }

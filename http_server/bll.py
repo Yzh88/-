@@ -86,11 +86,11 @@ class HTTPServer(object):
         if con_type is None:
             return
         elif con_type == "image/jpeg":
-            header_str = "content-type" + con_type + "\r\n"
+            header_str = "content-type:" + con_type + "\r\n"
             response_headers += header_str
-            response_headers += '\r\n'
             response_headers += 'accept-range:bytes\r\n'
             response_headers += 'content-length:%d\r\n' % len(data["data"])
+            response_headers += '\r\n'
             response_body = base64.encodebytes(data['data'])
             response_data = response_headers.encode() + response_body
         else:
