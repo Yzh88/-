@@ -1,7 +1,6 @@
 import json
 from select import select
 from socket import *
-
 from config.web_config import *
 
 
@@ -34,7 +33,7 @@ class Application(object):
     def handle(self, conn_fd):
         request = conn_fd.recv(1024).decode()
         request = json.loads(request)
-
+        response = ""
         # request = {'method': 'GET', 'info': '/'}
         if request['method'] == 'GET':
             if request['info'] == '/' or request['info'][-5:] == '.html':
@@ -58,14 +57,14 @@ class Application(object):
     @staticmethod
     def get_html(info):
         if info == '/':
-            filename = STATIC_DIR + '/login.html'
+            filename = WEB_DIR + '/login.html'
         else:
-            filename = STATIC_DIR + info
+            filename = WEB_DIR + info
         try:
             fd = open(filename)
         except Exception as e:
             print(e)
-            f = open(STATIC_DIR + "/404.html")
+            f = open(WEB_DIR + "/404.html")
             return {'status': '404', 'data': f.read()}
         else:
             return {'status': '200', 'data': fd.read()}
@@ -75,8 +74,3 @@ class Application(object):
     #         if url == info:
     #             return {'status': '200', 'data': func()}
     #     return {'status': '404', 'data': 'sorry,...'}
-
-
-if __name__ == '__main__':
-    app = Application()
-    app.start()

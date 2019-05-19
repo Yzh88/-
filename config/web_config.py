@@ -7,4 +7,4 @@ frame_address = (frame_ip, frame_port)
 DEBUG = True
 
 # [save html pages]
-STATIC_DIR = "/home/tarena/project/web/"
+WEB_DIR = "/home/tarena/project/web/"

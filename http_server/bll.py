@@ -2,7 +2,6 @@ import json
 import re
 from socket import *
 from threading import Thread
-
 from config.http_config import *
 from config.web_config import *
 
@@ -68,26 +67,24 @@ class HTTPServer(object):
     @staticmethod
     def response(conn_fd, data):
         # data {'status':200,'data':content}
+        response_headers = ""
         if data['status'] == '200':
             response_headers = 'HTTP/1.1 200 OK\r\n'
-            response_headers += 'Content-Type:text/html\r\n'
-            response_headers += '\r\n'
-            response_body = data['data']
+            # response_headers += 'Content-Type:text/html\r\n'
+            # response_headers += '\r\n'
+            # response_body = data['data']
 
         elif data['status'] == '404':
             response_headers = 'HTTP/1.1 404 Not Found\r\n'
-            response_headers += 'Content-Type:text/html\r\n'
-            response_headers += '\r\n'
-            response_body = data['data']
+            # response_headers += 'Content-Type:text/html\r\n'
+            # response_headers += '\r\n'
+            # response_body = data['data']
 
         elif data['status'] == '500':
             pass
-
         # 将数据发送给浏览器
+        response_headers += 'Content-Type:text/html\r\n'
+        response_headers += '\r\n'
+        response_body = data['data']
         response_data = response_headers + response_body
         conn_fd.send(response_data.encode())
-
-
-if __name__ == '__main__':
-    httped = HTTPServer(ADDR)
-    httped.serve_forever()
