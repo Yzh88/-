@@ -3,6 +3,7 @@ import re
 from socket import *
 from threading import Thread
 from config.web_config import *
+import base64
 
 
 # 和web建立连接
@@ -16,9 +17,9 @@ def connect_frame(env):
     data = json.dumps(env)  # 将字典转化为json数据　发送
     s.send(data.encode())
     try:
-        data = s.recv(4096 * 100).decode()
+        data = s.recv(4096 * 1000).decode()
     except UnicodeDecodeError:
-        data = s.recv(4096 * 100)
+        data = s.recv(4096 * 1000)
         return {"type": "image/jpeg", 'status': '200', 'data': data}
     else:
         return json.loads(data)  # 返回数据字典
@@ -54,7 +55,7 @@ class HTTPServer(object):
             client.start()
 
     def handle(self, conn_fd):
-        request = conn_fd.recv(4096).decode()
+        request = conn_fd.recv(4096 * 1000).decode()
         print(request)
         pattern = r'(?P<method>[A-Z]+)\s+(?P<info>/\S*)'
         try:
@@ -87,11 +88,10 @@ class HTTPServer(object):
         elif con_type == "image/jpeg":
             header_str = "content-type:" + con_type + "\r\n"
             response_headers += header_str
-            response_headers += 'accept-range:bytes\r\n'
             response_headers += 'content-length:%d\r\n' % len(data["data"])
             response_headers += '\r\n'
-            response_body = str(data['data'])
-            response_data = response_headers.encode() + response_body.encode()
+            response_body = base64.encodebytes(data['data'])
+            response_data = response_headers.encode() + response_body
         else:
             header_str = "content-type:" + con_type + "\r\n"
             response_headers += header_str
