@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公告管理</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/basic.css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/main.js"></script>
+</head>
+<body>
+<!--顶部背景-->
+<div id="top">
+    <!--顶部内容-->
+    <div id="top_content">
+        <img src="" class="top1">
+        <p class="top2"><b >企业管理系统</b></p>
+        <p class="top3"><a href="/main">回到首页</a></p>
+    </div>
+</div>
+
+<!-- 主体背景 -->
+<div id="box">
+    <!-- 主体部分 -->
+    <div id="main">
+        <!-- 左侧导航栏 -->
+        <form method="get" action="" enctype="">
+            <div id="left_view">
+                <ul class="left_view">
+                    <li class="left_li"><a href="/recruit">招聘管理</a>
+
+                        <ol class="view">
+                            <li onclick="show_recruit1()">招聘计划</li>
+                            <li onclick="show_recruit2()">初选面试</li>
+                            <li onclick="show_recruit3()">录用情况</li>
+                        </ol>
+
+                    </li>
+                    <li class="left_li"><a href="/attendance">考勤管理</a>
+                        <ol class="view">
+                            <!--<li>考勤数据采集</li>-->
+                            <li onclick="show_inner1()"><a href="/attendance">考勤记录</a></li>
+                            <li onclick="show_inner2()"><a href="/attendance">出差管理</a></li>
+                            <li onclick="show_inner3()"><a href="/attendance">休假管理</a></li>
+                            <li onclick="show_inner4()"><a href="/attendance">加班管理</a></li>
+                        </ol>
+                    </li>
+                    <li class="left_li">培训计划</li>
+                    <li class="left_li"><a href="main.html">其他查询</a></li>
+                </ul>
+            </div>
+        </form>
+
+        <!--右侧内容区-->
+        <div id="inner">
+
+            <!--默认公告区域-->
+            <div id="content">
+                <div id="inner1">
+                    <a href="">培训通知：xx月xx日员工培训,请相关人员做好相应工作调整</a>
+
+                </div>
+
+                <div id="inner2">
+
+                    <a href="">xx年xx月xx日杨中海就中期项目需求进行培训讲解</a>
+                </div>
+                <div id="inner3">
+                    <a href="">xx年xx月xx日石小亮就中期项目后端操作流程进行进行分析讲解</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div id="end">
+            <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

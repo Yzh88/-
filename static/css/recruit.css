@@ -1,0 +1,174 @@
+/* 清除浏览器的默认样式 */
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body,html {
+    width: 100%;
+    color: #333;
+}
+
+/* 顶部背景 */
+#top{
+    width:100%;
+    height:80px;
+    line-height:80px;
+    padding:0;
+}
+
+/* 顶部内容 */
+#top_content{
+    width:1200px;
+    height:80px;
+    background:pink;
+    position:relative;
+    left:50%;
+    margin-left:-600px;
+    padding:0;
+}
+.top1{
+    width:60px;
+    height:60px;
+    background:#fff;
+    margin-left:5%;
+    margin-top:10px;
+    padding:0;
+    float:left;
+}
+.top2{
+    float:left;
+    margin-left:20px;
+    padding:0;
+}
+.top2 b{
+    font-size:28px;
+}
+.top3{
+    float:right;
+    margin-right:5%;
+}
+.top3 a{
+    font-size:20px;
+}
+
+/* 主题背景 */
+#box{
+    width:100%;
+    height:720px;
+    /*background: url("../img/login_bg_img.jpg");
+    background-size:100% 720px;*/
+    padding:0;
+    margin:0;
+}
+
+/* 主体main */
+#main{
+    width:1200px;
+    height:500px;
+    position:relative;
+    left:50%;
+    margin-left:-600px;
+    padding:0;
+}
+
+/* 左侧导航栏 */
+#left_view{
+    width:200px;
+    height:650px;
+    text-align:center;
+    background:orange;
+    padding:0;
+    position:absolute;
+    top:20px;
+    border-right:2px solid #333;
+    font-size:22px;
+}
+.left_view{
+}
+
+.left_li{
+    position:relative;
+    top:-80px;
+    margin-top:110px;
+}
+.view{
+    display:none;
+    position:absolute;
+    left:50px;
+    font-size:18px;
+}
+
+/* 右侧内容区 */
+#inner{
+
+    height:500px;
+    /*background:orange;*/
+    position:absolute;
+    top:20px;
+    left:350px;
+}
+
+/* 底部 */
+#end{
+    width:1200px;
+    position:absolute;
+    top:700px;
+    left:340px;
+}
+
+
+/*悬停效果*/
+
+
+li:hover ol{
+    display:block;
+    margin-left:50px;
+    background:red;
+    color:pink;
+}
+
+ol>li:hover{
+    background:blue;
+}
+
+
+/*表格处理*/
+#table1,#table2,#table3,#table4{
+    width:700px;
+
+}
+
+/*默认公告区域*/
+#inner1,#inner2,#inner3 {
+    margin-right:5em;
+    float:left;
+    width:300px;
+    height:300px;
+    border:1px solid black;
+}
+#inner3{
+    margin-top:30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
