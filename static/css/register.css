@@ -11,7 +11,7 @@ a {
 body {
 }
 
-.top {
+#top {
     width: 1200px;
     position: relative;
     margin-top: 10px;
@@ -23,21 +23,16 @@ body {
 }
 
 
-.top p {
+#top p {
     float: left;
     font-size: 38px;
 }
 
-.top span {
+#top span {
     float:left;
     margin-top:10px;
 }
-#center{
-    position:absolute;
-    margin-top:30px;
-    margin-left:50px;
-}
-.center {
+#center {
     width: 1200px;
     text-align: center;
     position: relative;
@@ -46,12 +41,12 @@ body {
     margin-left:-770px;
 }
 
-.center img {
+#center img {
     width: 1585px;
     height: 600px;
 }
 
-.login {
+#login {
     width: 500px;
     height: 400px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -60,8 +55,13 @@ body {
     top: 100px;
     box-shadow: -5px -5px 10px black;
 }
+#content{
+    position:absolute;
+    margin-top:30px;
+    margin-left:50px;
+}
 
-.bottom {
+#bottom {
     width: 1200px;
     position: relative;
     height: 100px;
@@ -72,7 +72,7 @@ body {
     margin-left:-600px;
 }
 
-.bottom a {
+#bottom a {
     font-size: 15px;
 }
 
@@ -105,18 +105,17 @@ body {
 }
 
 #l3 {
-    margin: 0 auto;
+    margin-top: -10px;
+    margin-left:15px;
 }
 
 #l3 a {
     color: red;
     float: right;
-     margin-top: 20px;
 }
 
 #l3 span {
     float: left;
-    margin-top: 20px;
 }
 
 
@@ -160,7 +159,7 @@ body {
 }
 .user2 {
     background: white;
-    width:80px;
+    width:220px;
     color: black;
     padding: 0 10px;
     border-left: 1px solid pink;
@@ -169,7 +168,6 @@ body {
     background: white;
     width:130px;
     color: black;
-    padding: 0 10px;
     border-right: 1px solid pink;
     text-align:center;
     font-size:15px;
@@ -181,7 +179,6 @@ body {
     height:5px;
 }
 .box {
-    width: 230px;
     height: 30px;
     padding: 0;
     border: 0;

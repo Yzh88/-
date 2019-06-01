@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>企业管理系统</title>
-    <link rel="stylesheet" href="../static/css/register.css" type="text/css">
-    <script src="../static/js/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="/static/css/register.css" type="text/css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
 
 </head>
 <body>
-<div class="top">
+<div id="top">
     <p>[LOGO]企业管理系统丨</p><span>智能企业管理解决方案,从此管理变得简单...</span>
 </div>
-<div class="center">
-    <img src="../static/images/login_bg_img.jpg">
-    <div class="login">
+<div id="center">
+    <img src="/static/images/login_bg_img.jpg">
+    <div id="login">
         <form action="main.html" method="post" enctype="multipart/form-data">
             <div id="l1">
                 <a href="/">登　录</a>
@@ -22,36 +22,48 @@
                 <a href="/register">注　册</a>
             </div>
             <p id="l6"></p>
-            <div  align="center" id="center">
+            <div  align="center" id="content">
                 <table id="l3" cellspacing="0">
                     <tr class="user">
                         <td class="user1">统一社会信用代码</td>
-                        <td class="user2"><input type="text" class="box"></td>
+                        <td class="user2">
+                            <input type="text" class="box" placeholder="请输入统一社会信用码">
+                        </td>
                     </tr>
                     <tr class="br"></tr>
                     <tr class="user">
                         <td class="user1">企业名称</td>
-                        <td class="user2"><input type="text" class="box"></td>
+                        <td class="user2">
+                            <input type="text" class="box" placeholder="请输入企业名称">
+                        </td>
                     </tr>
                     <tr class="br"></tr>
                     <tr class="user">
                         <td class="user1">企业类型</td>
-                        <td class="user2"><input type="text" class="box"></td>
+                        <td class="user2">
+                            <input type="text" class="box" placeholder="请输入企业类型">
+                        </td>
                     </tr>
                     <tr class="br"></tr>
                     <tr class="user">
-                        <td class="user1">住所</td>
-                        <td class="user2"><input type="text" class="box"></td>
+                        <td class="user1">企业地址</td>
+                        <td class="user2">
+                            <input type="text" class="box" placeholder="请输入企业地址">
+                        </td>
                     </tr>
                     <tr class="br"></tr>
                     <tr class="user">
                         <td class="user1">法定代表人</td>
-                        <td class="user2"><input type="text" class="box"></td>
+                        <td class="user2">
+                            <input type="text" class="box" placeholder="请输入法定代表人">
+                        </td>
                     </tr>
                     <tr class="br"></tr>
                     <tr class="user">
                         <td class="user1">代表人身份证号码</td>
-                        <td class="user2"><input type="text" class="box"></td>
+                        <td class="user2">
+                            <input type="text" class="box" placeholder="请输入合法二代身份证">
+                        </td>
                     </tr>
                     <tr class="user">
                         <td id="l5" colspan="2">
@@ -65,7 +77,7 @@
     </div>
 
 </div>
-<div class="bottom">
+<div id="bottom">
     <a href="">　公司介绍　丨</a>
     <a href="">　开发团队　丨</a>
     <a href="">　法律申明　丨</a>

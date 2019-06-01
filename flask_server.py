@@ -1,26 +1,34 @@
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request,session,make_response
 # 创建Flask的程序实例
 app = Flask(__name__)
 
 
-class Users(db.Model):
-    __tablename__ = "users"
-    id = db.Column(db.Integer,primary_key=True)
-    username = db.Column(db.String(80),nullable = False,unique = True,index = True)
-    age = db.Column(db.Integer,nullable=True)
-    email = db.Column(db.String(120),unique=True)
-    #增加一个列isAcive
-    isActive =db.Column(db.Boolean,default=True)
-    birthday = db.Column(db.Date)
-    def __repr__(self):
-        return "<%d,%s,%s,%s,%s>"%(self.id,self.username,self.age,self.email,self.birthday)
 
-
-
-
-@app.route('/')
+@app.route("/login")
+@app.route('/',methods=['GET',"POST"])
+@app.route("/login",methods=['GET',"POST"])
 def show_form():
-    return render_template('login.html')
+    flas = False
+    if request.method=="GET":
+
+        return render_template('login.html',params=locals())
+
+    else:
+
+        uname = request.form['uname']
+        pswd = request.form["pswd"]
+        if uname == 'ljl' and pswd=="123456":
+            resp = make_response("<a href='/main'>进入</a>")
+            if "remember_pwd" in request.form:
+                resp.set_cookie('uname',uname,60*60*24)
+                resp.set_cookie('pswd',pswd,60*60*24)
+            return resp
+
+        else:
+            flas = True
+            return render_template("login.html",params=locals())
+
+
 
 
 @app.route('/main', methods=['GET', 'POST'])
@@ -48,36 +56,10 @@ def attendance():
 def notice():
     return render_template('notice.html')
 
-@app.route('/update')
-def update():
-    pageCount = 5  # 每页显示的记录的数量
-    pageCurrent = request.args.get('pageCurrent', 1)  # 当前想看的页数
-    if pageCurrent == '':
-        pageCurrent = 1
-    pageCurrent = int(pageCurrent)
-    pages = math.ceil(db.session.query(Users).count() / 5)
-    if pageCurrent >= pages:
-        pageCurrent = pages
-    elif pageCurrent <= 0:
-        pageCurrent = 1
-
-    ost = (pageCurrent - 1) * pageCount  # 1、计算要跳过多少条数据
-    users = db.session.query(Users).offset(ost).limit(pageCount).all()  # 2、查询对应的数据
-    # 判断是否有kw参数传递到视图中
-    if 'kw' in request.args:
-        kw = str(request.args['kw'])
-        if kw != '':
-            users = db.session.query(Users).filter(
-                or_(
-                    Users.username.like('%' + kw + '%'),
-                    Users.email.like('%' + kw + '%')
-                )
-            )
-            pages = math.ceil(users.count() / 5)
-            users = users.offset(ost).limit(pageCount).all()
-            kws = 1
-
-    return render_template("01-update.html", params=locals())
+@app.route('/register')
+@app.route('/register.html')
+def register():
+    return render_template('register.html')
 
 
 if __name__ == '__main__':

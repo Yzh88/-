@@ -75,6 +75,7 @@ body,html {
 
 /* 左侧导航栏 */
 #left_view{
+    color:black;
     width:200px;
     height:650px;
     text-align:center;
@@ -154,7 +155,7 @@ body,html {
     margin-top:30px;
 }
 
-
+/*超链接设置*/
 
 
 
