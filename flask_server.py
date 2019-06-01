@@ -4,36 +4,23 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def show_form():
-    return render_template('login.html')
+    if request.method == "GET":
+        return render_template('login.html')
+    else:
+        uname = request.form["uname"]
+        upwd = request.form["pswd"]
+        # remember_pwd=False
+        # if "remember_pwd" in request.form:
+        #     remember_pwd=True
+        # if remember_pwd:
+        #     pass
 
-
-@app.route('/main', methods=['GET', 'POST'])
-@app.route('/main.html', methods=['GET', 'POST'])
-def main_page():
-    username = request.form.get('uname')
-    password = request.form.get('pswd')
-    print(username, password)
-    return render_template('main.html')
-
-
-@app.route('/recruit')
-@app.route('/recruit.html')
-def recruit():
-    return render_template('recruit.html')
-
-
-@app.route('/attendance')
-@app.route('/attendance.html')
-def attendance():
-    return render_template('attendance.html')
-
-
-@app.route('/notice')
-@app.route('/notice.html')
-def notice():
-    return render_template('notice.html')
+        if uname == "admin" and upwd == "admin":
+            return "登录成功"
+        else:
+            return "<script>alert('登录失败‘);location.href='/';</script>"
 
 
 if __name__ == '__main__':

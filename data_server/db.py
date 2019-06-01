@@ -16,8 +16,8 @@ cur.close()
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{USER}:{SQL_PWD}@{HOST}:{SQL_PORT}/{name}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-# 查询时会显示原始SQL语句
-app.config["SQLALCHEMY_ECHO"] = True
+# # 查询时会显示原始SQL语句
+# app.config["SQLALCHEMY_ECHO"] = True
 db = SQLAlchemy(app)
 
 
