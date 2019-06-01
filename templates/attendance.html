@@ -28,13 +28,11 @@
             <div id="left_view">
                 <ul class="left_view">
                     <li class="left_li"><a>招聘管理</a>
-
                         <ol class="view">
-                            <li onclick="show_recruit1()"><a href="recruit.html">招聘计划</a></li>
-                            <li onclick="show_recruit2()"><a href="recruit.html">初选面试</a></li>
-                            <li onclick="show_recruit3()"><a href="recruit.html">录用情况</a></li>
+                            <li onclick="show_recruit1()"><a href="/recruit">临时人员详情表</a></li>
+                            <li onclick="show_recruit2()"><a href="/recruit">临时人员详情表</a></li>
+                            <li onclick="show_recruit3()"><a href="/recruit">临时人员基本情况</a></li>
                         </ol>
-
                     </li>
                     <li class="left_li"><a>考勤管理</a>
                         <ol class="view">
@@ -63,41 +61,58 @@
                     <th>入职时间</th>
                     <th>工作天数</th>
                 </tr>
+                {% for u in params.users %}
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <td>{{u.username}}</td>
+                    <td>{{u.age}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.birthday}}</td>
+                    {% if u.isActive == 1 %}
+                    <td>已激活</td>
+                    {% else %}
+                    <td>未激活</td>
+                    {% endif %}
+                    <td>
+                        <a href="/01-upuser?id={{u.id}}">修改</a>
+                        <a href="#">删除</a>
+                    </td>
                 </tr>
+                {% endfor %}
+                {% if params.kws %}
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <td colspan="5">
+                        <a href="/update?kw={{params.kw}}&pageCurrent=1">首页</a>
+                        <a href="/update?kw={{params.kw}}&pageCurrent={{params.pageCurrent-1}}">上一页</a>
+                        <a>{{params.pageCurrent}}/{{params.pages}}</a>
+                        {% if params.pageCurrent == params.pages %}
+                        <a href="/update?kw={{params.kw}}&pageCurrent={{params.pageCurrent}}">下一页</a>
+                        {% else %}
+                        <a href="/update?kw={{params.kw}}&pageCurrent={{params.pageCurrent+1}}">下一页</a>
+                        {% endif %}
+                    </td>
+                    <td><a href="/update?pageCurrent=1">返回</a></td>
                 </tr>
+                {% else %}
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <td colspan="6">
+                        <a href="/update?pageCurrent=1">首页</a>
+                        <a href="/update?pageCurrent={{params.pageCurrent-1}}">上一页</a>
+                        <a>{{params.pageCurrent}}/{{params.pages}}</a>
+                        {% if params.pageCurrent == params.pages %}
+                        <a href="/update?pageCurrent={{params.pageCurrent}}">下一页</a>
+                        {% else %}
+                        <a href="/update?pageCurrent={{params.pageCurrent+1}}">下一页</a>
+                        {% endif %}
+                        <a href="/update?pageCurrent={{params.pages}}">尾页</a>
+                        <input type="text" name="pageCurrent" class="ipt">
+                        <button>跳转</button>
+                    </td>
                 </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
+                {% endif %}
                 <tr>
                     <th colspan="6"><button onclick="dele1()">关闭</button></th>
                 </tr>
+
 
             </table>
             <table border="1px" id="table2" style="display:none;">

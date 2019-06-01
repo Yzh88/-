@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>企业管理系统</title>
-    <link rel="stylesheet" href="/static/css/login.css" type="text/css">
+    <link rel="stylesheet" href="static/css/login.css" type="text/css">
+
+    <script src="/static/js/login.js"></script>
+    <script>
+        window.onload = function (){
+           var uinput = $("input");
+           uinput.oninput = function (){
+               return uname = uinput.value;
+            };
+        }
+
+
+    </script>
 </head>
 <body>
 <div class="top">
     <p>[LOGO]企业管理系统丨</p><span>智能企业管理解决方案,从此管理变得简单...</span>
 </div>
 <div class="center">
-    <img src="/static/images/login_bg_img.jpg">
+    <img src="static/images/login_bg_img.jpg">
     <div class="login">
 
-        <form action="/" method="post">
+        <form action="/main" method="post" enctype="multipart/form-data">
             <div id="l1">
                 登　录
             </div>
@@ -24,7 +36,7 @@
             <table id="l3">
                 <tr>
                     <td class="user">账　号</td>
-                    <td class="user"><input class="box" type="text" name="uname" placeholder="企业统一社会信用码"></td>
+                    <td class="user"><input class="box num1" type="text" name="uname" placeholder="企业统一社会信用码"></td>
                 </tr>
                 <tr id="l7">
                 <tr>
@@ -34,7 +46,7 @@
                 <tr>
                     <td colspan="2">
                         <input id="l4" type="checkbox" name="remember_pwd">
-                        <span >记住密码</span>
+                        <span>记住密码</span>
                         <a href="">忘记密码?</a>
                     </td>
                 </tr>
@@ -57,5 +69,7 @@
     <a href="">　联系我们</a>
     <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
 </div>
+
+
 </body>
 </html>

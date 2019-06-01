@@ -29,11 +29,9 @@
                 <ul class="left_view">
                     <li class="left_li"><a>招聘管理</a>
                         <ol class="view">
-
-                            <li onclick="show_recruit1()">招聘计划</li>
-                            <li onclick="show_recruit2()">初选面试</li>
-                            <li onclick="show_recruit3()">录用情况</li>
-
+                            <li onclick="show_recruit1()">临时人员详情表</li>
+                            <li onclick="show_recruit2()">临时人员详情表</li>
+                            <li onclick="show_recruit3()">临时人员基本情况</li>
                         </ol>
                     </li>
                     <li class="left_li"><a>考勤管理</a>
@@ -56,44 +54,12 @@
             <table border="1px" id="table1"  style="display:none;">
                 <!--考勤记录-->
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <td>序号</td>
+                    <td>兴趣爱好</td>
+                    <td>特长</td>
+                    <td>毕业院校</td>
+                    <td>培训经历</td>
+                    <td>工作经历</td>
                 </tr>
                 <tr>
                     <th colspan="6"><button onclick="dele1()">关闭</button></th>
@@ -128,45 +94,34 @@
             </table>
             <table border="1px" id="table3" style="display:none;">
                 <tr>
-                    <th>工号</th>
+                    <th>序号</th>
                     <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <th>电话</th>
+                    <th>生日</th>
+                    <th>性别</th>
+                    <th>籍贯</th>
+                    <th>学历</th>
+                    <th>工申请职位</th>
+                    <th>期望薪资</th>
+                    <th>申请时间</th>
+                    <th>审核状态</th>
                 </tr>
+                {% for i in params.tal%}
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>-
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
                 </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
+                {% endfor%}
+
                 <tr>
                     <th colspan="6"><button onclick="dele3()">关闭</button></th>
                 </tr>
