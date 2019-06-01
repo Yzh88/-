@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘</title>
+    <link rel="stylesheet" href="/static/css/recruit.css">
+    <link rel="stylesheet" href="/static/css/basic.css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/recruit.js"></script>
+</head>
+<body>
+<!--顶部背景-->
+<div id="top">
+    <!--顶部内容-->
+    <div id="top_content">
+        <img src="" class="top1">
+        <p class="top2"><b >企业管理系统</b></p>
+        <p class="top3"><a href="/main">回到首页</a></p>
+    </div>
+</div>
+
+<!-- 主体背景 -->
+<div id="box">
+    <!-- 主体部分 -->
+    <div id="main">
+        <!-- 左侧导航栏 -->
+        <form method="post" action="" enctype="">
+            <div id="left_view">
+                <ul class="left_view">
+                    <li class="left_li"><a>招聘管理</a>
+                        <ol class="view">
+                            <li onclick="show_recruit1()">临时人员详情表</li>
+                            <li onclick="show_recruit2()">临时人员详情表</li>
+                            <li onclick="show_recruit3()">临时人员基本情况</li>
+                        </ol>
+                    </li>
+                    <li class="left_li"><a>考勤管理</a>
+                        <ol class="view">
+                            <!--<li>考勤数据采集</li>-->
+                            <li onclick="show_inner1()"><a href="attendance.html">考勤记录</a></li>
+                            <li onclick="show_inner2()"><a href="attendance.html">出差管理</a></li>
+                            <li onclick="show_inner3()"><a href="attendance.html">休假管理</a></li>
+                            <li onclick="show_inner4()"><a href="attendance.html">加班管理</a></li>
+                        </ol>
+                    </li>
+                    <li class="left_li"><a href="notice.html">培训计划</a></li>
+                    <li class="left_li"><a href="main.html">其他查询</a></li>
+                </ul>
+            </div>
+        </form>
+
+        <!--右侧内容区-->
+        <div id="inner">
+            <table border="1px" id="table1"  style="display:none;">
+                <!--考勤记录-->
+                <tr>
+                    <td>序号</td>
+                    <td>兴趣爱好</td>
+                    <td>特长</td>
+                    <td>毕业院校</td>
+                    <td>培训经历</td>
+                    <td>工作经历</td>
+                </tr>
+                <tr>
+                    <th colspan="6"><button onclick="dele1()">关闭</button></th>
+                </tr>
+
+            </table>
+            <table border="1px" id="table2" style="display:none;">
+                <tr>
+                    <td class="user">账　号</td>
+                    <td class="user"><input class="box" type="text" name="registration_no" placeholder="企业统一社会信用码"></td>
+                </tr>
+                <tr id="l7">
+                <tr>
+                    <td class="user">密　码</td>
+                    <td class="user"><input class="box" type="password" name="password" placeholder="法人身份证号码后6位"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="l4" type="checkbox" name="remember_pwd">
+                        <span>记住密码</span>
+                        <a href="">忘记密码?</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="l5" colspan="2">
+                        <input type="submit" value="登　录">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="6"><button onclick="dele2()">关闭</button></th>
+                </tr>
+            </table>
+            <table border="1px" id="table3" style="display:none;">
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>生日</th>
+                    <th>性别</th>
+                    <th>籍贯</th>
+                    <th>学历</th>
+                    <th>工申请职位</th>
+                    <th>期望薪资</th>
+                    <th>申请时间</th>
+                    <th>审核状态</th>
+                </tr>
+                {% for i in params.tal%}
+                <tr>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>-
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                    <th>{{params.num}}</th>
+                </tr>
+                {% endfor%}
+
+                <tr>
+                    <th colspan="6"><button onclick="dele3()">关闭</button></th>
+                </tr>
+
+            </table>
+            <!--默认公告区域-->
+            <div id="content">
+                <div id="inner1">
+                    <p>暂无查询记录</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div id="end">
+            <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
