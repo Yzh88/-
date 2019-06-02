@@ -29,9 +29,10 @@
                 <ul class="left_view">
                     <li class="left_li"><a>招聘管理</a>
                         <ol class="view">
-                            <li onclick="show_recruit1()">临时人员详情表</li>
-                            <li onclick="show_recruit2()">临时人员详情表</li>
                             <li onclick="show_recruit3()">临时人员基本情况</li>
+                            <li onclick="show_recruit1()">应聘人员详情表</li>
+                            <li onclick="show_recruit2()">************</li>
+
                         </ol>
                     </li>
                     <li class="left_li"><a>考勤管理</a>
@@ -61,12 +62,23 @@
                     <td>培训经历</td>
                     <td>工作经历</td>
                 </tr>
+                {% for i in params.temp_details%}
+                <tr>
+                    <th>{{i.id}}</th>
+                    <th>{{i.hobby}}</th>
+                    <th>{{i.speciality}}</th>
+                    <th>{{i.graduation}}</th>
+                    <th>{{i.training}}</th>-
+                    <th>{{i.career}}</th>
+                </tr>
+                {% endfor%}
+
                 <tr>
                     <th colspan="6"><button onclick="dele1()">关闭</button></th>
                 </tr>
 
             </table>
-            <table border="1px" id="table2" style="display:none;">
+            <table border="1px" id="table2" style="display">
                 <tr>
                     <td class="user">账　号</td>
                     <td class="user"><input class="box" type="text" name="registration_no" placeholder="企业统一社会信用码"></td>
@@ -106,34 +118,47 @@
                     <th>申请时间</th>
                     <th>审核状态</th>
                 </tr>
-                {% for i in params.tal%}
+                {% for i in params.temp_bases%}
                 <tr>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>-
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
-                    <th>{{params.num}}</th>
+                    <th>{{i.num}}</th>
+                    <th>{{i.name}}</th>
+                    <th>{{i.tel}}</th>
+                    <th>{{i.birthday}}</th>
+                    <th>{{i.sex}}</th>-
+                    <th>{{i.native}}</th>
+                    <th>{{i.education}}</th>
+                    <th>{{i.want_job}}</th>
+                    <th>{{i.hope_wage}}</th>
+                    <th>{{i.apply_time}}</th>
+                     <th>{% if i.status%}
+                            是
+                            {%else%}
+                            否
+                            {%endif%}
+                     </th>
                 </tr>
                 {% endfor%}
 
+
                 <tr>
-                    <th colspan="6"><button onclick="dele3()">关闭</button></th>
+                    <td colspan="5">
+                        <a href="/recruit?currentPage=1">首页</a>
+                        <a href="/recruit?currentPage={{params.prevPage_bases}}">上一页</a>
+                        <a href="/recruit?currentPage={{params.nextPage_bases}}">下一页</a>
+                        <a href="/recruit?currentPage={{params.lastPage_bases}}">尾页</a>
+                    </td>
+
+                    <!--<th colspan="6"><button onclick="dele3()">关闭</button></th>-->
                 </tr>
 
             </table>
             <!--默认公告区域-->
-            <div id="content">
-                <div id="inner1">
-                    <p>暂无查询记录</p>
-                </div>
+            <!--<div id="content">-->
+                <!--<div id="inner1">-->
+                    <!--<p>暂无查询记录</p>-->
+                <!--</div>-->
 
-            </div>
+            <!--</div>-->
         </div>
 
         <!-- 底部 -->
