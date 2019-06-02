@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>招聘</title>
+    <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
     <link rel="stylesheet" href="/static/css/recruit.css">
     <link rel="stylesheet" href="/static/css/basic.css">
     <script src="/static/js/jquery-1.11.3.js"></script>
@@ -13,7 +14,7 @@
 <div id="top">
     <!--顶部内容-->
     <div id="top_content">
-        <img src="" class="top1">
+        <img src="/static/images/e.jpg" class="top1">
         <p class="top2"><b >企业管理系统</b></p>
         <p class="top3"><a href="/main">回到首页</a></p>
     </div>
@@ -52,7 +53,7 @@
 
         <!--右侧内容区-->
         <div id="inner">
-            <table border="1px" id="table1"  style="display:none;">
+            <table border="1px" id="table1" cellspacing="0">
                 <!--考勤记录-->
                 <tr>
                     <td>序号</td>
@@ -74,11 +75,16 @@
                 {% endfor%}
 
                 <tr>
-                    <th colspan="6"><button onclick="dele1()">关闭</button></th>
+                    <th colspan="11">
+                        <a href="/recruit?currentPage_d=1">首页</a>
+                        <a href="/recruit?currentPage_d={{params.prevPage_details}}">上一页</a>
+                        <a href="/recruit?currentPage_d={{params.nextPage_details}}">下一页</a>
+                        <a href="/recruit?currentPage_d={{params.lastPage_details}}">尾页</a>
+                    </th>
                 </tr>
 
             </table>
-            <table border="1px" id="table2" style="display">
+            <table border="1px" id="table2" style="display:none" cellspacing="0">
                 <tr>
                     <td class="user">账　号</td>
                     <td class="user"><input class="box" type="text" name="registration_no" placeholder="企业统一社会信用码"></td>
@@ -104,7 +110,7 @@
                     <th colspan="6"><button onclick="dele2()">关闭</button></th>
                 </tr>
             </table>
-            <table border="1px" id="table3" style="display:none;">
+            <table border="1px" id="table3" style="display:none;" cellspacing="0">
                 <tr>
                     <th>序号</th>
                     <th>姓名</th>
@@ -121,7 +127,7 @@
                 {% for i in params.temp_bases%}
                 <tr>
                     <th>{{i.num}}</th>
-                    <th>{{i.name}}</th>
+                    <th class="name1">{{i.name}}</th>
                     <th>{{i.tel}}</th>
                     <th>{{i.birthday}}</th>
                     <th>{{i.sex}}</th>-
@@ -141,12 +147,13 @@
 
 
                 <tr>
-                    <td colspan="5">
+
+                    <th colspan="11">
                         <a href="/recruit?currentPage=1">首页</a>
                         <a href="/recruit?currentPage={{params.prevPage_bases}}">上一页</a>
                         <a href="/recruit?currentPage={{params.nextPage_bases}}">下一页</a>
                         <a href="/recruit?currentPage={{params.lastPage_bases}}">尾页</a>
-                    </td>
+                    </th>
 
                     <!--<th colspan="6"><button onclick="dele3()">关闭</button></th>-->
                 </tr>

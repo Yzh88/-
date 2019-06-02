@@ -189,7 +189,8 @@ body {
 }
 
 /*输入错误返回信息*/
-#span1{
+
+#l6 .flag{
     color:red;
     position:absolute;
     margin-left:180px;

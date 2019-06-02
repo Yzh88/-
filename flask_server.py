@@ -10,6 +10,8 @@ import math
 app = Flask(__name__)
 #连接到MySQL中flaskDB数据库
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456@127.0.0.1:3306/personnel_management"
+
+# app.config['host'] = '0.0.0.0'
 #指定不需要信号追踪
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #指定程序的启动模式为调试模式
@@ -102,7 +104,7 @@ def add_data():
 
 @app.route('/',methods=['GET', 'POST'])
 def show_first_page():
-    flag = False
+    flag = 0
     if request.method == 'GET':
 
         return render_template('login.html',params=locals())
@@ -117,7 +119,7 @@ def show_first_page():
                     print(user.registration_no, user.password)
                     return render_template('main.html')
         else:
-            flag = True
+            flag = 1
             return render_template('login.html',params=locals())  # 账号不存在 render_template('/')
 
 
@@ -135,6 +137,8 @@ def show_register():
         enterprise.ceo_id = 1
         enterprise.password = request.form.get('password')
         db.session.add(enterprise)
+
+        flag = 2
         return render_template('login.html',params=locals())
 
 
@@ -148,17 +152,12 @@ def main_page():
 @app.route('/recruit')
 @app.route('/recruit.html')
 def recruit():
-    pageSize = 1
+    pageSize = 5
     currentPage = int(request.args.get('currentPage',1))
     ost = (currentPage-1)*pageSize
-
     temp_bases = db.session.query(TempBase).offset(ost).limit(pageSize).all()
-    temp_details = db.session.query(TempDetails).offset(ost).limit(pageSize).all()
     totalSize_bases = db.session.query(TempBase).count()
-    totalSize_details = db.session.query(TempDetails).count()
     lastPage_bases = math.ceil(totalSize_bases/pageSize)
-    lastPage_details = math.ceil(totalSize_details/pageSize)
-
     prevPage_bases = 1
     if currentPage > 1:
         prevPage_bases = currentPage - 1
@@ -166,12 +165,18 @@ def recruit():
     if currentPage < lastPage_bases:
         nextPage_bases = currentPage + 1
 
-    prevpage_details = 1
-    if currentPage > 1:
-        prevpage_details = currentPage - 1
+    pageSize_d = 5
+    currentPage_d = int(request.args.get('currentPage_d', 1))
+    ost_d = (currentPage_d - 1) * pageSize_d
+    temp_details = db.session.query(TempDetails).offset(ost_d).limit(pageSize_d).all()
+    totalSize_details = db.session.query(TempDetails).count()
+    lastPage_details = math.ceil(totalSize_details / pageSize_d)
+    prevPage_details = 1
+    if currentPage_d > 1:
+        prevPage_details = currentPage_d - 1
     nextPage_details = lastPage_details
-    if currentPage < lastPage_details:
-        nextPage_details = currentPage + 1
+    if currentPage_d < lastPage_details:
+        nextPage_details = currentPage_d + 1
 
     return render_template('recruit.html',params=locals())
 
@@ -187,4 +192,5 @@ def notice():
     return render_template('notice.html')
 
 if __name__ == '__main__':
-    manager.run()
+    app.run(debug=True,host='0.0.0.0')
+    # manager.run()
