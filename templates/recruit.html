@@ -29,10 +29,9 @@
                 <ul class="left_view">
                     <li class="left_li"><a>招聘管理</a>
                         <ol class="view">
-
-                            <li onclick="show_recruit1()">招聘计划</li>
-                            <li onclick="show_recruit2()">初选面试</li>
-                            <li onclick="show_recruit3()">录用情况</li>
+                            <li onclick="show_recruit3()">临时人员基本情况</li>
+                            <li onclick="show_recruit1()">应聘人员详情表</li>
+                            <li onclick="show_recruit2()">************</li>
 
                         </ol>
                     </li>
@@ -56,45 +55,24 @@
             <table border="1px" id="table1"  style="display:none;">
                 <!--考勤记录-->
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <td>序号</td>
+                    <td>兴趣爱好</td>
+                    <td>特长</td>
+                    <td>毕业院校</td>
+                    <td>培训经历</td>
+                    <td>工作经历</td>
                 </tr>
+                {% for i in params.temp_details%}
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <th>{{i.id}}</th>
+                    <th>{{i.hobby}}</th>
+                    <th>{{i.speciality}}</th>
+                    <th>{{i.graduation}}</th>
+                    <th>{{i.training}}</th>-
+                    <th>{{i.career}}</th>
                 </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
+                {% endfor%}
+
                 <tr>
                     <th colspan="6"><button onclick="dele1()">关闭</button></th>
                 </tr>
@@ -128,51 +106,53 @@
             </table>
             <table border="1px" id="table3" style="display:none;">
                 <tr>
-                    <th>工号</th>
+                    <th>序号</th>
                     <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <th>电话</th>
+                    <th>生日</th>
+                    <th>性别</th>
+                    <th>籍贯</th>
+                    <th>学历</th>
+                    <th>工申请职位</th>
+                    <th>期望薪资</th>
+                    <th>申请时间</th>
+                    <th>审核状态</th>
                 </tr>
+                {% for i in params.temp_bases%}
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
+                    <th>{{i.num}}</th>
+                    <th>{{i.name}}</th>
+                    <th>{{i.tel}}</th>
+                    <th>{{i.birthday}}</th>
+                    <th>{{i.sex}}</th>-
+                    <th>{{i.native}}</th>
+                    <th>{{i.education}}</th>
+                    <th>{{i.want_job}}</th>
+                    <th>{{i.hope_wage}}</th>
+                    <th>{{i.apply_time}}</th>
+                     <th>{% if i.status%}
+                            是
+                            {%else%}
+                            否
+                            {%endif%}
+                     </th>
                 </tr>
+                {% endfor%}
+
+
                 <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
+                    <td colspan="5">
+                        <a href="/recruit?currentPage=1">首页</a>
+                        <a href="/recruit?currentPage={{params.prevPage_bases}}">上一页</a>
+                        <a href="/recruit?currentPage={{params.nextPage_bases}}">下一页</a>
+                        <a href="/recruit?currentPage={{params.lastPage_bases}}">首页</a>
+                    </td>
+
                     <th colspan="6"><button onclick="dele3()">关闭</button></th>
                 </tr>
 
             </table>
-            <!--默认公告区域-->
+            默认公告区域
             <div id="content">
                 <div id="inner1">
                     <p>暂无查询记录</p>

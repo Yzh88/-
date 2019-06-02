@@ -4,13 +4,9 @@ html, body, p {
 
 }
 
-
-
 a {
     text-decoration: none;
 }
-
-
 
 body {
 }
@@ -36,11 +32,6 @@ body {
     float:left;
     margin-top:10px;
 }
-#center{
-    position:absolute;
-    margin-top:30px;
-    margin-left:50px;
-}
 #center {
     width: 1200px;
     text-align: center;
@@ -63,6 +54,11 @@ body {
     left:950px;
     top: 100px;
     box-shadow: -5px -5px 10px black;
+}
+#content{
+    position:absolute;
+    margin-top:30px;
+    margin-left:50px;
 }
 
 #bottom {
@@ -97,21 +93,20 @@ body {
     width: 249px;
     height: 55px;
     font-size: 20px;
-    background:#fff;
-    color:#333;
+    color:white;
 }
 #l2 a{
     width: 249px;
     height: 55px;
     float: right;
     font-size: 20px;
-    color:#fff;
+    background:#fff;
+    color:#333;
 }
 
 #l3 {
-    border-collapse: collapse;
-    margin-top: 45px;
-    margin-left:90px;
+    margin-top: -10px;
+    margin-left:15px;
 }
 
 #l3 a {
@@ -124,14 +119,12 @@ body {
 }
 
 
-#l4 input{
+#l4 {
     float: left;
     height: 24px;
     padding: 0;
     margin-top: 22px;
-}
-#l4 span,#l4 a{
-    margin-top: 20px;
+    margin-left: 0;
 }
 
 #l5 {
@@ -164,34 +157,30 @@ body {
 #l7 {
     height: 25px;
 }
-
 .user2 {
     background: white;
     width:220px;
     color: black;
     padding: 0 10px;
-    border-left: 2px solid pink;
+    border-left: 1px solid pink;
 }
 .user1{
     background: white;
-    width:80px;
+    width:130px;
     color: black;
-    border-right: 2px solid pink;
+    border-right: 1px solid pink;
     text-align:center;
     font-size:15px;
 }
-
+.user{
+    height:35px;
+}
+.br{
+    height:5px;
+}
 .box {
-    height: 40px;
+    height: 30px;
     padding: 0;
     border: 0;
     outline: none;
-}
-
-/*输入错误返回信息*/
-#span1{
-    color:red;
-    position:absolute;
-    margin-left:180px;
-    margin-top:35px;
 }

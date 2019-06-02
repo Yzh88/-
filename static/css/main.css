@@ -75,6 +75,7 @@ body,html {
 
 /* 左侧导航栏 */
 #left_view{
+    color:black;
     width:200px;
     height:650px;
     text-align:center;
@@ -83,21 +84,25 @@ body,html {
     position:absolute;
     top:20px;
     border-right:2px solid #333;
-    font-size:22px;
-}
-.left_view{
+    font-size:20px;
 }
 
 .left_li{
     position:relative;
     top:-80px;
     margin-top:110px;
+    font-size:20px;
 }
 .view{
+    width:144px;
     display:none;
     position:absolute;
-    left:50px;
+    left:9px;
     font-size:18px;
+    text-align:center;
+}
+.view li{
+    color:#fff;
 }
 
 /* 右侧内容区 */
@@ -109,7 +114,6 @@ body,html {
     top:20px;
     left:350px;
 }
-
 /* 底部 */
 #end{
     width:1200px;
@@ -122,14 +126,13 @@ body,html {
 /*悬停效果*/
 
 
-li:hover ol{
+.left_li:hover ol{
     display:block;
-    margin-left:50px;
+    margin-left:20px;
     background:red;
-    color:pink;
 }
 
-ol>li:hover{
+.view>li:hover{
     background:blue;
 }
 
@@ -152,7 +155,7 @@ ol>li:hover{
     margin-top:30px;
 }
 
-
+/*超链接设置*/
 
 
 
