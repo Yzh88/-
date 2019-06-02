@@ -61,13 +61,13 @@
                     <th>入职时间</th>
                     <th>工作天数</th>
                 </tr>
-                {% for u in params.users %}
+                {% for p in pres %}
                 <tr>
-                    <td>{{u.username}}</td>
-                    <td>{{u.age}}</td>
-                    <td>{{u.email}}</td>
-                    <td>{{u.birthday}}</td>
-                    {% if u.isActive == 1 %}
+                    <td>{{p.name}}</td>
+                    <td>{{p.age}}</td>
+                    <td>{{p.email}}</td>
+                    <td>{{p.birthday}}</td>
+                    {% if p.isActive %}
                     <td>已激活</td>
                     {% else %}
                     <td>未激活</td>
