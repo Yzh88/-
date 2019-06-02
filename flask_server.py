@@ -81,12 +81,12 @@ class PersDetails(db.Model):  # 职员 详细 信息表
 class EnterpriseDate(db.Model):  # 企业基本信息表
     __tablename__ = 'enterprise_base'
     registration_no = db.Column(db.String(64),primary_key=True)
-    enterprise_name = db.Column(db.String(64))
-    enterprise_type = db.Column(db.String(32))
-    address = db.Column(db.String(64))
-    ceo = db.Column(db.String(16))
-    ceo_id = db.Column(db.String(64))
-    password = db.Column(db.String(40))
+    enterprise_name = db.Column(db.String(64),nullable=False)
+    enterprise_type = db.Column(db.String(32),nullable=False)
+    address = db.Column(db.String(64),nullable=False)
+    ceo = db.Column(db.String(16),nullable=False)
+    ceo_id = db.Column(db.String(64),nullable=False)
+    password = db.Column(db.String(40),nullable=False)
 
 @app.route('/add_data')
 def add_data():
@@ -135,7 +135,7 @@ def show_register():
         enterprise.ceo_id = 1
         enterprise.password = request.form.get('password')
         db.session.add(enterprise)
-        return render_template('main.html')
+        return render_template('login.html',params=locals())
 
 
 @app.route('/main', methods=['GET', 'POST'])
@@ -157,11 +157,11 @@ def recruit():
     totalSize_bases = db.session.query(TempBase).count()
     totalSize_details = db.session.query(TempDetails).count()
     lastPage_bases = math.ceil(totalSize_bases/pageSize)
-    lastPage_details = math.ceil(totalSize_details)
+    lastPage_details = math.ceil(totalSize_details/pageSize)
 
-    prevpage_bases = 1
+    prevPage_bases = 1
     if currentPage > 1:
-        prevpage_bases = currentPage - 1
+        prevPage_bases = currentPage - 1
     nextPage_bases = lastPage_bases
     if currentPage < lastPage_bases:
         nextPage_bases = currentPage + 1

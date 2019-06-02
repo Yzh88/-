@@ -2,19 +2,19 @@
 function show_recruit1(){
     $("#table2").css("display","none");
     $("#table3").css("display","none");
-    $("#content").css("display","none");
+    //$("#content").css("display","none");
     $("#table1").css("display","");
 }
 function show_recruit2(){
     $("#table1").css("display","none");
     $("#table3").css("display","none");
-    $("#content").css("display","none");
+   // $("#content").css("display","none");
     $("#table2").css("display","");
 }
 function show_recruit3(){
     $("#table1").css("display","none");
     $("#table2").css("display","none");
-    $("#content").css("display","none");
+   // $("#content").css("display","none");
     $("#table3").css("display","");
 }
 
