@@ -14,7 +14,7 @@
     <!--顶部内容-->
     <div id="top_content">
         <img src="" class="top1">
-        <p class="top2"><b >企业管理系统</b></p>
+        <p class="top2"><b>企业管理系统</b></p>
         <p class="top3"><a href="/main">回到首页</a></p>
     </div>
 </div>
@@ -51,7 +51,7 @@
 
         <!--右侧内容区-->
         <div id="inner">
-            <table border="1px" id="table1"  style="display:none;">
+            <table border="1px" id="table1" style="display:none;">
                 <!--考勤记录-->
                 <tr>
                     <th>工号</th>
@@ -63,7 +63,7 @@
                 </tr>
                 {% for p in pres %}
                 <tr>
-                    <td>{{p.name}}</td>
+                    <td>{{p.username}}</td>
                     <td>{{p.age}}</td>
                     <td>{{p.email}}</td>
                     <td>{{p.birthday}}</td>
@@ -78,7 +78,7 @@
                     </td>
                 </tr>
                 {% endfor %}
-                {% if params.kws %}
+                {% if p.kws %}
                 <tr>
                     <td colspan="5">
                         <a href="/update?kw={{params.kw}}&pageCurrent=1">首页</a>
@@ -110,138 +110,12 @@
                 </tr>
                 {% endif %}
                 <tr>
-                    <th colspan="6"><button onclick="dele1()">关闭</button></th>
-                </tr>
-
-
-            </table>
-            <table border="1px" id="table2" style="display:none;">
-                <tr>
-                    <td class="user">账　号</td>
-                    <td class="user"><input class="box" type="text" name="registration_no" placeholder="企业统一社会信用码"></td>
-                </tr>
-                <tr id="l7">
-                <tr>
-                    <td class="user">密　码</td>
-                    <td class="user"><input class="box" type="password" name="password" placeholder="法人身份证号码后6位"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input id="l4" type="checkbox" name="remember_pwd">
-                        <span>记住密码</span>
-                        <a href="">忘记密码?</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="l5" colspan="2">
-                        <input type="submit" value="登　录">
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele2()">关闭</button></th>
+                    <th colspan="6">
+                        <button onclick="dele1()">关闭</button>
+                    </th>
                 </tr>
             </table>
-            <table border="1px" id="table3" style="display:none;">
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele3()">关闭</button></th>
-                </tr>
-
-            </table>
-            <table border="1px" id="table4" style="display:none;">
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele4()">关闭</button></th>
-                </tr>
-
-            </table>
-            <!--默认公告区域-->
-            <div id="content">
-                <div id="inner1">
-                    <p>暂无查询</p>
-                </div>
-
-            </div>
         </div>
-
         <!-- 底部 -->
         <div id="end">
             <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>

@@ -3,7 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
-from config.data_config import *
+from db_config import *
 
 pymysql.install_as_MySQLdb()
 con = pymysql.connect(HOST, USER, SQL_PWD)
@@ -48,7 +48,6 @@ class Pers_details(db.Model):
     career = db.Column(db.String(1024 * 5))
     signin_time = db.Column(db.DateTime)
     signout_time = db.Column(db.DateTime)
-    status_id = db.Column(db.Integer, db.ForeignKey("status.id"))
     status = db.Column(db.String(16))
     is_astive = db.Column(db.String(8), default=True)
 

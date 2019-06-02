@@ -1,10 +1,10 @@
-from flask import render_template, request
-from data_server.db import *
+from flask import render_template
+from db import *
 
 
 @app.route('/attendance')
-def show_form():
-    pres = Pers_details()
+def attendance_views():
+    pres = Pers_details.query.all()
     return render_template("attendance.html", pres=pres)
 
 

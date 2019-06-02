@@ -3,49 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>企业管理系统</title>
-    <link rel="stylesheet" href="static/css/login.css" type="text/css">
-
+    <link rel="stylesheet" href="/static/css/login.css" type="text/css">
     <script src="/static/js/login.js"></script>
     <script>
         window.onload = function (){
-           var uinput = $("input");
-           uinput.oninput = function (){
-               return uname = uinput.value;
+            var uinput = $("input");
+            uinput.oninput = function (){
+
+                console.log(uinput.value);
             };
         }
-
-
     </script>
 </head>
 <body>
-<div class="top">
+<div id="top">
     <p>[LOGO]企业管理系统丨</p><span>智能企业管理解决方案,从此管理变得简单...</span>
 </div>
-<div class="center">
-    <img src="static/images/login_bg_img.jpg">
-    <div class="login">
+<div id="center">
+    <img src="/static/images/login_bg_img.jpg">
+    <div id="login">
 
-        <form action="/main" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
             <div id="l1">
-                登　录
+                <a href="/">登　录</a>
             </div>
             <div id="l2">
-                注　册
+                <a href="/register">注　册</a>
             </div>
             <p id="l6"></p>
+            {%  if  params.flas %}
+                <p id="span1">用户名或者密码错误</p>
+            {%  endif %}
             <table id="l3">
-                <tr>
-                    <td class="user">账　号</td>
-                    <td class="user"><input class="box num1" type="text" name="uname" placeholder="企业统一社会信用码"></td>
+                <tr id="username1">
+                    <td class="user1">账　号</td>
+                    <td class="user2">
+                        <input class="box" type="text" name="uname" placeholder="请输入统一社会信用码">
+                    </td>
                 </tr>
                 <tr id="l7">
                 <tr>
-                    <td class="user">密　码</td>
-                    <td class="user"><input class="box" type="password" name="pswd" placeholder="法人身份证号码后6位"></td>
+                    <td class="user1">密　码</td>
+                    <td class="user2">
+                        <input class="box" type="password" name="pswd" placeholder="法人身份证号码后6位">
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <input id="l4" type="checkbox" name="remember_pwd">
+                    <td colspan="2" id="l4">
+                        <input type="checkbox" name="remember_pwd">
                         <span>记住密码</span>
                         <a href="">忘记密码?</a>
                     </td>
@@ -60,7 +65,7 @@
     </div>
 
 </div>
-<div class="bottom">
+<div id="bottom">
     <a href="">　公司介绍　丨</a>
     <a href="">　开发团队　丨</a>
     <a href="">　法律申明　丨</a>
