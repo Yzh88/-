@@ -191,6 +191,10 @@ def attendance():
 def notice():
     return render_template('notice.html')
 
+@app.route("/staff_view")
+def staff_view():
+    return render_template('staff-view.html')
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
     # manager.run()
