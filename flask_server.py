@@ -1,3 +1,6 @@
+import random
+from datetime import datetime
+
 from flask import Flask, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
@@ -53,17 +56,9 @@ class TempDetails(db.Model):  # 应聘人员 详情 表
     career = db.Column(db.String(100))
 
 
-class PersBase(db.Model):  # 正式职员 基本 信息表
+class PersBase(TempBase):
+    super().__init__()
     __tablename__ = 'pers_base'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32))
-    tel = db.Column(db.String(32))
-    birthday = db.Column(db.String(32))
-    sex = db.Column(db.String(32))
-    department = db.Column(db.String(32))
-    job = db.Column(db.String(32))
-    base_salary = db.Column(db.Float)
-    performance = db.Column(db.Float)
 
 
 class PersDetails(db.Model):  # 职员 详细 信息表
@@ -181,15 +176,26 @@ def recruit():
     return render_template('recruit.html', params=locals())
 
 
-@app.route('/recruit')
-@app.route('/recruit.html')
-def recruit_views():
-    return render_template("recruit.html", params=locals())
+@app.route("/punch")
+def punch():
+    return render_template("punch_card.html")
 
 
 @app.route('/attendance')
 @app.route('/attendance.html')
 def attendance():
+    pageSize = 10
+    currentPage = int(request.args.get('currentPage', 1))
+    ost = (currentPage - 1) * pageSize
+    pers = PersBase.query.filter_by(status=True).offset(ost).limit(pageSize).all()
+    totalSize_bases = db.session.query(TempBase).count()
+    lastPage_bases = math.ceil(totalSize_bases / pageSize)
+    prevPage_bases = 1
+    if currentPage > 1:
+        prevPage_bases = currentPage - 1
+    nextPage_bases = lastPage_bases
+    if currentPage < lastPage_bases:
+        nextPage_bases = currentPage + 1
     return render_template('attendance.html', params=locals())
 
 
@@ -197,6 +203,37 @@ def attendance():
 @app.route('/notice.html')
 def notice():
     return render_template('notice.html')
+
+
+@app.route("/add")
+def add():
+    for i in range(100):
+        pers = TempBase()
+        xa = random.randint(0, 9)
+        xb = random.randint(1111, 9999)
+        xc = random.randint(0, 1)
+        a = ("赵", "孙", "李", "蒋", "沈", "韩", "杨", "王", "张", "胡")[xa]
+        b = ("阿立", "永秀", "爱国", "敬业", "永强", "阿囡", "二蛋", "三强", "四季", "发财")[xa]
+        c = "1330916" + str(xb)
+        d = str(random.randint(1980, 2000)) + "-" + str(random.randint(1, 12)) + "-" + str(random.randint(1, 28))
+        e = ("男", "女")[xc]
+        f = ("新疆", "内蒙", "黑龙江", "辽宁", "山东", "吉林", "陕西", "重庆", "四川", "湖南")[xa]
+        g = ("大专", "本科")[xc]
+        h = ("销售", "前台", "经理", "内勤", "司机", "门卫", "保安", "清洁工", "会计", "技术员")[xa]
+        i = xb
+        j = datetime.now()
+        pers.name = a + b
+        pers.tel = c
+        pers.birthday = d
+        pers.sex = e
+        pers.native = f
+        pers.education = g
+        pers.want_job = h
+        pers.hope_wage = i
+        pers.apply_time = j
+        pers.status = True
+        db.session.add(pers)
+    return "OK"
 
 
 if __name__ == '__main__':

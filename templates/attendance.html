@@ -1,253 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>考勤</title>
-    <link rel="stylesheet" href="/static/css/attendance.css">
-    <link rel="stylesheet" href="/static/css/basic.css">
-    <script src="/static/js/jquery-1.11.3.js"></script>
-    <script src="/static/js/attendance.js"></script>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-<!--顶部背景-->
-<div id="top">
-    <!--顶部内容-->
-    <div id="top_content">
-        <img src="" class="top1">
-        <p class="top2"><b >企业管理系统</b></p>
-        <p class="top3"><a href="/main">回到首页</a></p>
-    </div>
-</div>
-
-<!-- 主体背景 -->
-<div id="box">
-    <!-- 主体部分 -->
-    <div id="main">
-        <!-- 左侧导航栏 -->
-        <form method="get" action="" enctype="">
-            <div id="left_view">
-                <ul class="left_view">
-                    <li class="left_li"><a>招聘管理</a>
-                        <ol class="view">
-                            <li onclick="show_recruit1()">临时人员详情表</li>
-                            <li onclick="show_recruit2()">临时人员详情表</li>
-                            <li onclick="show_recruit3()">临时人员基本情况</li>
-                        </ol>
-                    </li>
-                    <li class="left_li"><a>考勤管理</a>
-                        <ol class="view">
-                            <!--<li>考勤数据采集</li>-->
-                            <li onclick="show_inner1()">考勤记录</li>
-                            <li onclick="show_inner2()">出差管理</li>
-                            <li onclick="show_inner3()">休假管理</li>
-                            <li onclick="show_inner4()">加班管理</li>
-                        </ol>
-                    </li>
-                    <li class="left_li"><a href="notice.html">培训计划</a></li>
-                    <li class="left_li"><a href="main.html">其他查询</a></li>
-                </ul>
-            </div>
-        </form>
-
-        <!--右侧内容区-->
-        <div id="inner">
-            <table border="1px" id="table1"  style="display:none;">
-                <!--考勤记录-->
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                {% for u in params.users %}
-                <tr>
-                    <td>{{u.name}}</td>
-                    <td>{{u.age}}</td>
-                    <td>{{u.email}}</td>
-                    <td>{{u.birthday}}</td>
-                    {% if u.isActive == 1 %}
-                    <td>已激活</td>
-                    {% else %}
-                    <td>未激活</td>
-                    {% endif %}
-                    <td>
-                        <a href="/01-upuser?id={{u.id}}">修改</a>
-                        <a href="#">删除</a>
-                    </td>
-                </tr>
-                {% endfor %}
-                {% if params.kws %}
-                <tr>
-                    <td colspan="5">
-                        <a href="/update?kw={{params.kw}}&pageCurrent=1">首页</a>
-                        <a href="/update?kw={{params.kw}}&pageCurrent={{params.pageCurrent-1}}">上一页</a>
-                        <a>{{params.pageCurrent}}/{{params.pages}}</a>
-                        {% if params.pageCurrent == params.pages %}
-                        <a href="/update?kw={{params.kw}}&pageCurrent={{params.pageCurrent}}">下一页</a>
-                        {% else %}
-                        <a href="/update?kw={{params.kw}}&pageCurrent={{params.pageCurrent+1}}">下一页</a>
-                        {% endif %}
-                    </td>
-                    <td><a href="/update?pageCurrent=1">返回</a></td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="6">
-                        <a href="/update?pageCurrent=1">首页</a>
-                        <a href="/update?pageCurrent={{params.pageCurrent-1}}">上一页</a>
-                        <a>{{params.pageCurrent}}/{{params.pages}}</a>
-                        {% if params.pageCurrent == params.pages %}
-                        <a href="/update?pageCurrent={{params.pageCurrent}}">下一页</a>
-                        {% else %}
-                        <a href="/update?pageCurrent={{params.pageCurrent+1}}">下一页</a>
-                        {% endif %}
-                        <a href="/update?pageCurrent={{params.pages}}">尾页</a>
-                        <input type="text" name="pageCurrent" class="ipt">
-                        <button>跳转</button>
-                    </td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <th colspan="6"><button onclick="dele1()">关闭</button></th>
-                </tr>
-
-
-            </table>
-            <table border="1px" id="table2" style="display:none;">
-                <tr>
-                    <td class="user">账　号</td>
-                    <td class="user"><input class="box" type="text" name="registration_no" placeholder="企业统一社会信用码"></td>
-                </tr>
-                <tr id="l7">
-                <tr>
-                    <td class="user">密　码</td>
-                    <td class="user"><input class="box" type="password" name="password" placeholder="法人身份证号码后6位"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input id="l4" type="checkbox" name="remember_pwd">
-                        <span>记住密码</span>
-                        <a href="">忘记密码?</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="l5" colspan="2">
-                        <input type="submit" value="登　录">
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele2()">关闭</button></th>
-                </tr>
-            </table>
-            <table border="1px" id="table3" style="display:none;">
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele3()">关闭</button></th>
-                </tr>
-
-            </table>
-            <table border="1px" id="table4" style="display:none;">
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th>工号</th>
-                    <th>姓名</th>
-                    <th>工作状态</th>
-                    <th>工作天数</th>
-                    <th>入职时间</th>
-                    <th>工作天数</th>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele4()">关闭</button></th>
-                </tr>
-
-            </table>
-            <!--默认公告区域-->
-            <div id="content">
-                <div id="inner1">
-                    <p>暂无查询</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- 底部 -->
-        <div id="end">
-            <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
-        </div>
-    </div>
-</div>
-
+<table border="1" width="500">
+    <tr>
+        <th>工号</th>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>生日</th>
+        <th>职位</th>
+        <th>操作</th>
+    </tr>
+    {% for p in params.pers %}
+    <tr>
+        <td>{{p.num}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.tel}}</td>
+        <td>{{p.birthday}}</td>
+        <td>{{p.want_job}}</td>
+        <td>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="6">
+            <a href="/attendance?currentPage=1">首页</a>
+            <a href="/attendance?currentPage={{params.prevPage_bases}}">上一页</a>
+            <a href="/attendance?currentPage={{params.nextPage_bases}}">下一页</a>
+            <a href="/attendance?currentPage={{params.lastPage_bases}}">尾页</a>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="6">
+            <button onclick="dele3()">关闭</button>
+        </th>
+    </tr>
+</table>
 </body>
 </html>
