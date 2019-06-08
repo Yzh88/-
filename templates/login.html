@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>企业管理系统</title>
+    <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
     <link rel="stylesheet" href="/static/css/login.css" type="text/css">
     <script src="/static/js/login.js"></script>
     <script>
@@ -18,6 +19,7 @@
 <body>
 <div id="top">
     <p>[LOGO]企业管理系统丨</p><span>智能企业管理解决方案,从此管理变得简单...</span>
+    <a href="/staff_view">打卡区域</a>
 </div>
 <div id="center">
     <img src="/static/images/login_bg_img.jpg">
@@ -31,8 +33,12 @@
                 <a href="/register">注　册</a>
             </div>
             <p id="l6"></p>
-            {%  if  params.flag %}
-                <p id="span1">用户名或者密码错误</p>
+            {%  if  params.flag==0 %}
+                <p class="flag">欢 迎</p>
+            {%  elif  params.flag==1 %}
+                <p class="flag">用户名或者密码错误</p>
+            {% elif params.flag==2  %}
+                <p class="flag">注册成功，请重新登录</p>
             {%  endif %}
             <table id="l3">
                 <tr id="username1">
@@ -60,6 +66,7 @@
                         <input type="submit" value="登　录">
                     </td>
                 </tr>
+
             </table>
         </form>
     </div>

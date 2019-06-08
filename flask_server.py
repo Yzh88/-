@@ -56,9 +56,17 @@ class TempDetails(db.Model):  # 应聘人员 详情 表
     career = db.Column(db.String(100))
 
 
-class PersBase(TempBase):
-    super().__init__()
+class PersBase(db.Model):  # 正式职员 基本 信息表
     __tablename__ = 'pers_base'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
+    tel = db.Column(db.String(32))
+    birthday = db.Column(db.String(32))
+    sex = db.Column(db.String(32))
+    department = db.Column(db.String(32))
+    job = db.Column(db.String(32))
+    base_salary = db.Column(db.Float)
+    performance = db.Column(db.Float)
 
 
 class PersDetails(db.Model):  # 职员 详细 信息表
@@ -152,13 +160,16 @@ def recruit():
     currentPage = int(request.args.get('currentPage', 1))
     ost = (currentPage - 1) * pageSize
 
+    pageSize = 5
+    currentPage = int(request.args.get('currentPage', 1))
+    ost = (currentPage - 1) * pageSize
     temp_bases = db.session.query(TempBase).offset(ost).limit(pageSize).all()
-    temp_details = db.session.query(TempDetails).offset(ost).limit(pageSize).all()
     totalSize_bases = db.session.query(TempBase).count()
     totalSize_details = db.session.query(TempDetails).count()
     lastPage_bases = math.ceil(totalSize_bases / pageSize)
     lastPage_details = math.ceil(totalSize_details / pageSize)
 
+    lastPage_bases = math.ceil(totalSize_bases / pageSize)
     prevPage_bases = 1
     if currentPage > 1:
         prevPage_bases = currentPage - 1
@@ -166,12 +177,18 @@ def recruit():
     if currentPage < lastPage_bases:
         nextPage_bases = currentPage + 1
 
-    prevpage_details = 1
-    if currentPage > 1:
-        prevpage_details = currentPage - 1
+    pageSize_d = 5
+    currentPage_d = int(request.args.get('currentPage_d', 1))
+    ost_d = (currentPage_d - 1) * pageSize_d
+    temp_details = db.session.query(TempDetails).offset(ost_d).limit(pageSize_d).all()
+    totalSize_details = db.session.query(TempDetails).count()
+    lastPage_details = math.ceil(totalSize_details / pageSize_d)
+    prevPage_details = 1
+    if currentPage_d > 1:
+        prevPage_details = currentPage_d - 1
     nextPage_details = lastPage_details
-    if currentPage < lastPage_details:
-        nextPage_details = currentPage + 1
+    if currentPage_d < lastPage_details:
+        nextPage_details = currentPage_d + 1
 
     return render_template('recruit.html', params=locals())
 
@@ -234,6 +251,11 @@ def add():
         pers.status = True
         db.session.add(pers)
     return "OK"
+
+
+@app.route("/staff_view")
+def staff_view():
+    return render_template('staff-view.html')
 
 
 if __name__ == '__main__':

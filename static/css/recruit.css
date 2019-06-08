@@ -106,12 +106,12 @@ body,html {
 
 /* 右侧内容区 */
 #inner{
-
     height:500px;
     /*background:orange;*/
     position:absolute;
     top:20px;
-    left:350px;
+    left:250px;
+    text-align:center;
 }
 /* 底部 */
 #end{
@@ -141,6 +141,12 @@ body,html {
     width:700px;
 
 }
+#table3{
+    width:950px;
+}
+#table1{
+    margin-left:100px;
+}
 
 /*默认公告区域*/
 #inner1,#inner2,#inner3 {
@@ -154,9 +160,9 @@ body,html {
     margin-top:30px;
 }
 
-
-
-
+.a1>th{
+    width:50px;
+}
 
 
 

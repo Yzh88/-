@@ -36,6 +36,15 @@ body {
     float:left;
     margin-top:10px;
 }
+
+
+#top a{
+    color：black;
+    font-size:24px;
+    float:right;
+    border:1px solid blue;
+}
+
 #center{
     position:absolute;
     margin-top:30px;
@@ -189,9 +198,12 @@ body {
 }
 
 /*输入错误返回信息*/
-#span1{
+
+#l6 .flag{
     color:red;
     position:absolute;
     margin-left:180px;
     margin-top:35px;
 }
+
+
