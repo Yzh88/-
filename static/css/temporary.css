@@ -1,0 +1,61 @@
+body{
+    width:1000px;
+    margin:0 auto;;
+    background:#1992a3;
+
+}
+
+/*标题处理*/
+#content h1{
+   font-size:28px;
+   margin-left:300px;
+}
+
+/*表格区域输入内容处理*/
+input{
+    padding:5px;
+    outline:none;
+    height:25px;
+    border-radius:5px;
+}
+
+#content{
+    font-size:18px;
+    positive:relative;
+}
+
+#content table{
+    margin-left:200px;
+}
+#content input{
+
+    margin-left:100px;
+
+}
+
+#content .time{
+
+    width:250px;
+
+}
+#content .check{
+    font-size:16px;
+    margin-left:15px;
+}
+
+/*输入框内容*/
+#content .input_box{
+    width:250px;
+}
+
+/*提交按钮*/
+#content #submit{
+    margin-top:30px;
+    margin-left:350px;
+}
+
+/*经历文本内容设置*/
+#content #exercise{
+    outline:none;
+    margin-left:200px;
+}

@@ -196,8 +196,9 @@ body,html {
     margin-top:320px;
 }
 
+/*搜索区域处理*/
 #inner2{
-    position:absolute;
+
     margin-left:50px;
     margin-top:350px;
     width:800px;
