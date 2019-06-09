@@ -109,7 +109,7 @@ def add_data():
     return '1'
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/admin', methods=['GET', 'POST'])
 def show_first_page():
     flag = False
     if request.method == 'GET':
@@ -128,6 +128,27 @@ def show_first_page():
         else:
             flag = True
             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
+
+
+@app.route('/', methods=['GET', 'POST'])
+def show_first_page():
+    flag = False
+    if request.method == 'GET':
+
+        return render_template('staff-login.html', params=locals())
+    else:
+
+        username = request.form.get('registration_no')
+        password = request.form.get('password')
+        users = db.session.query(EnterpriseDate).all()
+        for user in users:
+            if username in user.registration_no:
+                if password in user.password:
+                    print(user.registration_no, user.password)
+                    return render_template('main.html')
+        else:
+            flag = True
+            return render_template('staff-login.html', params=locals())
 
 
 @app.route('/register', methods=['GET', 'POST'])
