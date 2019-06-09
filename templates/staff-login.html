@@ -16,26 +16,26 @@
     <img src="/static/images/login_bg_img.jpg">
     <div id="login">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/staff-login" method="post">
             <div id="l1">
                 <a href="#">员　工　登　录</a>
             </div>
             <p id="l6"></p>
-            {%  if  params.flag %}
-            <p id="span1">用户名或者密码错误</p>
-            {%  endif %}
+            {% if flag %}
+                <span>用户名或密码错误</span>
+            {% endif %}
             <table id="l3">
                 <tr id="username1">
                     <td class="user1">账　号</td>
                     <td class="user2">
-                        <input class="box" type="text" name="registration_no" placeholder="请输入手机号码">
+                        <input class="box" type="text" name="tel" placeholder="请输入手机号码">
                     </td>
                 </tr>
                 <tr id="l7">
                 <tr>
                     <td class="user1">密　码</td>
                     <td class="user2">
-                        <input class="box" type="password" name="password" placeholder="请输入身份证后6位">
+                        <input class="box" type="password" name="birthday" placeholder="请输入8位生日">
                     </td>
                 </tr>
                 <tr>

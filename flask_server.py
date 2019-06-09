@@ -1,4 +1,5 @@
 import random
+import time
 from datetime import datetime
 
 from flask import Flask, request, render_template, redirect
@@ -243,40 +244,55 @@ def notice():
     return render_template('notice.html')
 
 
-@app.route("/add")
-def add():
-    for i in range(30):
-        pers = TempBase()
-        xa = random.randint(0, 9)
-        xb = random.randint(1111, 9999)
-        xc = random.randint(0, 1)
-        a = ("赵", "孙", "李", "蒋", "沈", "韩", "杨", "王", "张", "胡")[xa]
-        b = ("阿立", "永秀", "爱国", "敬业", "永强", "阿囡", "二蛋", "三强", "四季", "发财")[xa]
-        c = "1330916" + str(xb)
-        d = str(random.randint(1980, 2000)) + "-" + str(random.randint(1, 12)) + "-" + str(random.randint(1, 28))
-        e = ("男", "女")[xc]
-        f = ("新疆", "内蒙", "黑龙江", "辽宁", "山东", "吉林", "陕西", "重庆", "四川", "湖南")[xa]
-        g = ("大专", "本科")[xc]
-        h = ("销售", "前台", "经理", "内勤", "司机", "门卫", "保安", "清洁工", "会计", "技术员")[xa]
-        i = xb
-        j = datetime.now()
-        pers.name = a + b
-        pers.tel = c
-        pers.birthday = d
-        pers.sex = e
-        pers.native = f
-        pers.education = g
-        pers.want_job = h
-        pers.hope_wage = i
-        pers.apply_time = j
-        pers.status = True
-        db.session.add(pers)
-    return "OK"
-
-
 @app.route("/staff_view")
 def staff_view():
     return render_template('staff-view.html')
+
+
+@app.route("/temporary", methods=["GET", "POST"])
+def temporary_view():
+    if request.method == "GET":
+        return render_template('temporary.html')
+    tb = TempBase()
+    td = TempDetails()
+    tb.name = request.form["name"]
+    tb.tel = request.form["tel"]
+    tb.birthday = request.form["birthday"]
+    tb.sex = request.form["sex"]
+    tb.native = request.form["native"]
+    tb.education = request.form["education"]
+    tb.want_job = request.form["want_job"]
+    tb.hope_wage = request.form["hope_wage"]
+    tb.apply_time = datetime.now()
+    td.hobby = request.form["hobby"]
+    td.speciality = request.form["speciality"]
+    td.graduation = request.form["graduation"]
+    td.training = request.form["training"]
+    td.career = request.form["career"]
+    db.session.add(tb)
+    db.session.add(td)
+    return redirect('/staff-login')
+
+
+@app.route("/staff-login", methods=["GET", "POST"])
+def staff_login_view():
+    if request.method == "GET":
+        return render_template("staff-login.html")
+    else:
+        tel = request.form["tel"]
+        try:
+            pers = TempBase.query.filter_by(tel=tel).first()
+            birthday = "".join(pers.birthday.split("-"))
+            print(birthday)
+            print(request.form["birthday"])
+            if birthday == request.form["birthday"]:
+                return render_template("staff-view.html", params=locals())
+            else:
+                flag = True
+                return render_template("staff-login.html", flag=flag)
+        except:
+            flag = True
+            return render_template("staff-login.html", flag=flag)
 
 
 if __name__ == '__main__':
