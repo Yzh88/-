@@ -1,8 +1,7 @@
-import random
-import time
 from datetime import datetime
+from time import time
 
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, json
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -95,6 +94,15 @@ class EnterpriseDate(db.Model):  # 企业基本信息表
     ceo = db.Column(db.String(16), nullable=False)
     ceo_id = db.Column(db.String(64), nullable=False)
     password = db.Column(db.String(40), nullable=False)
+
+
+class TrainningNotice(db.Model):  # 培训通告
+    __tablename__ = 'trainning_notice'
+    notice_id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.String(64), nullable=False)
+    notice_uname = db.Column(db.String(64), nullable=False)
+    notice_time = db.Column(db.Integer, nullable=False)
+    notice_cot = db.Column(db.String(1024), nullable=False)
 
 
 @app.route('/add_data')
@@ -238,15 +246,11 @@ def attendance():
     return render_template('attendance.html', params=locals())
 
 
-@app.route('/notice')
-@app.route('/notice.html')
-def notice():
-    return render_template('notice.html')
-
-
 @app.route("/staff_view")
 def staff_view():
-    return render_template('staff-view.html')
+    id = db.session.query(func.max(TrainningNotice.notice_id)).first()[0]
+    notice = TrainningNotice.query.filter_by(notice_id=id).first()
+    return render_template('staff-view.html', notice=notice)
 
 
 @app.route("/temporary", methods=["GET", "POST"])
@@ -285,6 +289,7 @@ def staff_login_view():
             birthday = "".join(pers.birthday.split("-"))
             years = datetime.now().year
             age = years - int(birthday[:4])
+            notice = TrainningNotice()
             if birthday == request.form["birthday"]:
                 return render_template("staff-view.html", params=locals())
             else:
@@ -293,6 +298,52 @@ def staff_login_view():
         except:
             flag = True
             return render_template("staff-login.html", flag=flag)
+
+
+@app.route('/notice')
+@app.route('/notice.html')
+def notice():
+    return render_template('notice.html')
+
+
+@app.route('/show-notice', methods=['POST'])
+def show_notice():
+    topic = request.form['topic']
+    uname = request.form['uname']
+    date1 = time()
+    cot = request.form['content']
+    notice = TrainningNotice()
+    notice.topic = topic
+    notice.notice_uname = uname
+    notice.notice_time = date1
+    notice.notice_cot = cot
+    try:
+        db.session.add(notice)
+        db.session.commit()
+        dic = {
+            'status': 1,
+            'text': '发布成功！'
+        }
+        return json.dumps(dic)
+    except Exception as e:
+        print(e)
+        dic = {
+            'status': 0,
+            'text': '发布错误！'
+        }
+        return json.dumps(dic)
+
+
+@app.route('/content2', methods=['POST'])
+def content2():
+    topic2 = request.form['topic2']
+    cots = TrainningNotice.query.filter_by(topic=topic2).first()
+    dic = {
+        'topic': cots.topic,
+        'uname': cots.notice_uname,
+        'cot': cots.notice_cot
+    }
+    return json.dumps(dic)
 
 
 if __name__ == '__main__':

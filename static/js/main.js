@@ -65,10 +65,14 @@ function autorun(){
     index++;
     if(index==arr.length){
         index=0;
+         $("#inner1").css("border","5px solid green");
+         $("#inner2").css("border","5px solid green");
+         $("#inner3").css("border","5px solid green");
+         $(".top1").css("border","5px solid green");
     }
     $("#inner1").css(utive,color);
-    $("#inner2").css(utive1,color);
-    $("#inner3").css(utive1,color);
+    $("#inner2").css(utive,color);
+    $("#inner3").css(utive,color);
     $(".top1").css(utive1,color);
 }
 $(function (){

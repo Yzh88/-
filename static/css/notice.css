@@ -198,9 +198,7 @@ body,html {
 
 /*搜索区域处理*/
 #inner2{
-
     margin-left:50px;
-    margin-top:350px;
     width:800px;
     height:300px;
     border:1px solid black;
@@ -224,10 +222,18 @@ body,html {
     margin-left:10px;
     margin-top:20px;
 }
+.inn2>input{
+    height:20px;
+    border:none;
+}
 .inn3{
     float:left;
     margin-left:50px;
     margin-top:20px;
+}
+.inn3>input{
+    height:20px;
+    border:none;
 }
 .inn4{
     width:796px;
@@ -236,6 +242,10 @@ body,html {
     margin-top:20px;
     border:1px solid black;
     border-left:none;
+}
+.inn5{
+    margin-left:20px;
+    margin-top:10px;
 }
 
 

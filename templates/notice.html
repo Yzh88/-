@@ -31,6 +31,22 @@
                     }
                 });
             });
+
+            $(".inn5").click(function(){
+                $.ajax({
+                    url:"/content2",
+                    type:"post",
+                    data:{
+                        topic2:$("#topic2").val()
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        $("#t1").val(data.topic)
+                        $("#t2").val(data.uname)
+                        $(".inn4").html(data.cot)
+                    }
+                });
+            });
         });
     </script>
 
@@ -57,9 +73,10 @@
                     <li class="left_li"><a href="/recruit">招聘管理</a>
 
                         <ol class="view">
-                            <li onclick="show_recruit1()"><a href="/recruit">临时人员详情表</a></li>
-                            <li onclick="show_recruit2()"><a href="/recruit">临时人员详情表</a></li>
-                            <li onclick="show_recruit3()"><a href="/recruit">临时人员基本情况</a></li>
+                            <li onclick="show_recruit3()">临时人员基本情况</li>
+                            <li onclick="show_recruit1()">应聘人员详情表</li>
+                            <li onclick="show_recruit2()">************</li>
+
                         </ol>
 
                     </li>
@@ -74,8 +91,8 @@
                     </li>
                     <li class="left_li" id="left_notice">培训计划
                         <ol class="view">
-                            <li><a href="/notice">发布公告</a></li>
-                            <li><a href="/notice">查看公告</a></li>
+                            <li>发布公告</li>
+                            <li>查看公告</li>
                         </ol>
                     </li>
                     <li class="left_li"><a href="main.html">其他查询</a></li>
@@ -94,14 +111,18 @@
                 <button class="in6">发表</button>
             </div>
             <!--搜索主题-->
-            <div id="inner2">
+            <div id="inner2" style="display:none;">
                 <p class="inn1">
-                    搜索主题：<input type="text" name="topic">
+                    搜索主题：<input type="text" name="topic2" id="topic2">
+                    <button class="inn5">搜索</button>
                 </p>
-                <p class="inn2">主题：<a>撒大声地</a></p>
-                <p class="inn3">主讲人：<a>爱仕达所多</a></p>
-                <textarea rows="10" cols="auto" class="inn4"></textarea>
-                <button>搜索</button>
+                <p class="inn2">主题：
+                    <input onfocus=this.blur() id="t1">
+                </p>
+                <p class="inn3">主讲人：
+                    <input onfocus=this.blur() id="t2">
+                </p>
+                <textarea rows="10" cols="auto" class="inn4" onfocus=this.blur()></textarea>
 
             </div>
 

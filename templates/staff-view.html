@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>员工页面</title>
     <link rel="stylesheet" href="../static/css/staff.css" type="text/css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
 </head>
 <body>
 <div id="top">
@@ -12,15 +13,12 @@
 <div id="center">
     <img src="../static/images/login_bg_img.jpg">
     <form action="" method="post" enctype="multipart/form-data">
-        <div id="inner2">
-            <p class="inn1">
-                搜索主题：<input type="text" name="topic">
-            </p>
-            <p class="inn2">主题：<a>撒大声地</a></p>
-            <p class="inn3">主讲人：<a>爱仕达所多</a></p>
-            <textarea rows="10" cols="auto" class="inn4"></textarea>
-            <button>搜索</button>
-
+        <div id="content">
+            <p class="c1">公司公告通知</p>
+            <p class="c2">主题：<span>{{notice.topic}}</span></p>
+            <p class="c3">主讲人：<span>{{notice.notice_uname}}</span></p>
+            <p class="c4">内容：</p>
+            <textarea class="c5" rows="10" cols="auto" onfocus=this.blur()>{{notice.notice_cot}}</textarea>
         </div>
         <div id="personal">
             <img src="../static/images/e.jpg">
