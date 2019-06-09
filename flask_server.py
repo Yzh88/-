@@ -203,7 +203,9 @@ def attendance():
 
 @app.route("/staff_view")
 def staff_view():
-    return render_template('staff-view.html')
+    id = db.session.query(func.max(TrainningNotice.notice_id)).first()[0]
+    notice = TrainningNotice.query.filter_by(notice_id=id).first()
+    return render_template('staff-view.html', notice=notice)
 
 
 @app.route('/staff-login', methods=['GET', 'POST'])
@@ -221,7 +223,7 @@ def staff_login():
             if username in user.registration_no:
                 if password in user.password:
                     print(user.registration_no, user.password)
-                    return render_template('staff-view.html')
+                    return redirect('/staff_view')
         else:
             flag = 1
             return render_template('staff-login.html', params=locals())  # 账号不存在 render_template('/')
@@ -259,6 +261,18 @@ def show_notice():
             'text': '发布错误！'
         }
         return json.dumps(dic)
+
+
+@app.route('/content2', methods=['POST'])
+def content2():
+    topic2 = request.form['topic2']
+    cots = TrainningNotice.query.filter_by(topic=topic2).first()
+    dic = {
+        'topic': cots.topic,
+        'uname': cots.notice_uname,
+        'cot': cots.notice_cot
+    }
+    return json.dumps(dic)
 
 
 if __name__ == '__main__':

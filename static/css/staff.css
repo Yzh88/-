@@ -47,10 +47,10 @@ body {
 }
 
 /* 公告内容 */
-#inner2{
+#content{
     position:absolute;
     background:#fff;
-    width:800px;
+    width:500px;
     height:400px;
     margin-top:-500px;
     margin-left:100px;
@@ -58,18 +58,23 @@ body {
     border:1px solid pink;
     border-radius:10px;
 }
-#content p{
+.c1{
     color:#333;
     font-weight:700px;
     font-size:25px;
     margin-top:20px;
 }
-#content textarea{
-    width:450px;
-    height:300px;
-    font-size:18px;
-    border:0;
-    padding:20px;
+.c2,.c3,.c4{
+    margin-top:10px;
+    color:#333;
+    font-weight:700px;
+    font-size:20px;
+    text-align:left;
+    padding-left:10px;
+}
+.c5{
+    width:495px;
+    height:220px;
 }
 
 /* 个人信息 */
@@ -161,37 +166,4 @@ tr,td{
 
 #bottom a {
     font-size: 15px;
-}
-
-/*搜索区域处理*/
-
-.inn1{
-    width:790px;
-    height:30px;
-    float:left;
-    margin-left:10px;
-    text-align:left;
-    line-height:30px;
-    margin-top:10px;
-}
-.inn1>input{
-    height:20px;
-}
-.inn2{
-    float:left;
-    margin-left:10px;
-    margin-top:20px;
-}
-.inn3{
-    float:left;
-    margin-left:50px;
-    margin-top:20px;
-}
-.inn4{
-    width:796px;
-    height:190px;
-    float:left;
-    margin-top:20px;
-    border:1px solid black;
-    border-left:none;
 }

@@ -24,14 +24,24 @@ function autorun(){
 $(function (){
     timer = setInterval(autorun,500);
     var isactive = false;
-    $("#left_notice").click(function (){
+    $("#inner1").click(function (){
         isactive = !isactive;
         if(isactive){
-            $("#inner1").css("display","none");
-            $("#inner2").css("display","block");
-        }else{
             $("#inner1").css("display","block");
             $("#inner2").css("display","none");
+        }else{
+            $("#inner1").css("display","none");
+            $("#inner2").css("display","block");
         }
     })
+     $("#inner2").click(function (){
+            isactive = !isactive;
+            if(isactive){
+                $("#inner1").css("display","none");
+                $("#inner2").css("display","block");
+            }else{
+                $("#inner1").css("display","block");
+                $("#inner2").css("display","none");
+            }
+        })
 })
