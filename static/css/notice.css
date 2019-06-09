@@ -18,6 +18,7 @@ body,html {
     padding:0;
 }
 
+/* 顶部内容 */
 #top_content{
     width:1200px;
     height:80px;
@@ -123,6 +124,7 @@ body,html {
 
 /*悬停效果*/
 
+
 .left_li:hover ol{
     display:block;
     margin-left:20px;
@@ -147,33 +149,93 @@ body,html {
 }
 
 /*默认公告区域*/
-#inner1,#inner2,#inner3 {
-    margin-right:5em;
+#inner1{
+    position:absolute;
+    margin-left:50px;
+    width:800px;
+    height:350px;
+    border:1px solid black;
+    padding:0;
+    text-align:left;
+    font-size:18px;
+    font-weight:700;
+}
+.in1,.in2{
+    margin-left:10px;
     float:left;
-    width:300px;
+}
+.in1>input,.in2>input,.in3>input{
+    width:200px;
+    height:20px;
+}
+.in3{
+    width:790px;
+    float:left;;
+    margin-left:10px;
+    margin-top:10px;
+}
+.in4{
+    width:790px;
+    float:left;
+    font-weight:700px;
+    margin-top:10px;
+    margin-left:10px;
+}
+.in5{
+    float:left;
+    width:796px;
+    height:190px;
+    margin-top:10px;
+    font-size:20px;
+    border:1px solid black;
+    border-left:none;
+}
+
+.in6{
+    margin-left:-150px;
+    margin-top:320px;
+}
+
+#inner2{
+    position:absolute;
+    margin-left:50px;
+    margin-top:350px;
+    width:800px;
     height:300px;
     border:1px solid black;
+    font-size:18px;
+    font-weight:700;
 }
-#inner3{
-    margin-top:30px;
+.inn1{
+    width:790px;
+    height:30px;
+    float:left;
+    margin-left:10px;
+    text-align:left;
+    line-height:30px;
+    margin-top:10px;
 }
-
-.a1>th{
-    width:50px;
+.inn1>input{
+    height:20px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+.inn2{
+    float:left;
+    margin-left:10px;
+    margin-top:20px;
+}
+.inn3{
+    float:left;
+    margin-left:50px;
+    margin-top:20px;
+}
+.inn4{
+    width:796px;
+    height:190px;
+    float:left;
+    margin-top:20px;
+    border:1px solid black;
+    border-left:none;
+}
 
 
 

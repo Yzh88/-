@@ -1,4 +1,5 @@
 from flask import Flask,render_template, request,session,make_response
+
 # 创建Flask的程序实例
 app = Flask(__name__)
 
@@ -14,11 +15,10 @@ def show_form():
         return render_template('login.html',params=locals())
 
     else:
-
         uname = request.form['uname']
         pswd = request.form["pswd"]
         if uname == 'ljl' and pswd=="123456":
-            resp = make_response("<a href='/main'>进入</a>")
+            resp = render_template("main.html")
             if "remember_pwd" in request.form:
                 resp.set_cookie('uname',uname,60*60*24)
                 resp.set_cookie('pswd',pswd,60*60*24)

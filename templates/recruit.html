@@ -7,8 +7,34 @@
     <link rel="stylesheet" href="/static/css/basic.css">
     <script src="/static/js/jquery-1.11.3.js"></script>
     <script src="/static/js/recruit.js"></script>
+    <script>
+        var arr = ["left","top","right","bottom"]
+        var arr1 = ["left","bottom","right","top"]
+        var index = 0;
+        function autorun(){
+            var utive1 = "border-"+arr[index];
+            var utive = "border-"+arr[index];
+
+            $("#inner1").css("border","5px solid blue");
+            $("#inner2").css("border","5px solid blue");
+            index++;
+            if(index==arr.length){
+                index=0;
+            }
+            $("#inner1").css(utive,"5px solid red");
+            $("#inner2").css(utive,"5px solid red");
+
+        }
+        $(function (){
+            timer = setInterval(autorun,1000);
+
+
+        })
+
+
+    </script>
 </head>
-<body>
+<body background="red">
 <!--顶部背景-->
 <div id="top">
     <!--顶部内容-->
@@ -29,9 +55,9 @@
                 <ul class="left_view">
                     <li class="left_li"><a>招聘管理</a>
                         <ol class="view">
-                            <li onclick="show_recruit1()">临时人员详情表</li>
-                            <li onclick="show_recruit2()">临时人员详情表</li>
                             <li onclick="show_recruit3()">临时人员基本情况</li>
+                            <li onclick="show_recruit2()">临时人员详情表</li>
+                            <li onclick="show_recruit1()">xxxx</li>
                         </ol>
                     </li>
                     <li class="left_li"><a>考勤管理</a>
@@ -67,30 +93,7 @@
 
             </table>
             <table border="1px" id="table2" style="display:none;">
-                <tr>
-                    <td class="user">账　号</td>
-                    <td class="user"><input class="box" type="text" name="registration_no" placeholder="企业统一社会信用码"></td>
-                </tr>
-                <tr id="l7">
-                <tr>
-                    <td class="user">密　码</td>
-                    <td class="user"><input class="box" type="password" name="password" placeholder="法人身份证号码后6位"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input id="l4" type="checkbox" name="remember_pwd">
-                        <span>记住密码</span>
-                        <a href="">忘记密码?</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="l5" colspan="2">
-                        <input type="submit" value="登　录">
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="6"><button onclick="dele2()">关闭</button></th>
-                </tr>
+
             </table>
             <table border="1px" id="table3" style="display:none;">
                 <tr>
