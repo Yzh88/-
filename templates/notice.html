@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>公告管理</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/notice.css">
     <link rel="stylesheet" href="/static/css/basic.css">
     <script src="/static/js/jquery-1.11.3.js"></script>
     <script src="/static/js/main.js"></script>
+
 </head>
 <body>
 <!--顶部背景-->
 <div id="top">
     <!--顶部内容-->
     <div id="top_content">
-        <img src="" class="top1">
+        <img src="/static/images/e.jpg" class="top1">
         <p class="top2"><b >企业管理系统</b></p>
         <p class="top3"><a href="/main">回到首页</a></p>
     </div>
@@ -24,15 +25,15 @@
     <!-- 主体部分 -->
     <div id="main">
         <!-- 左侧导航栏 -->
-        <form method="get" action="" enctype="">
+
             <div id="left_view">
                 <ul class="left_view">
                     <li class="left_li"><a href="/recruit">招聘管理</a>
 
                         <ol class="view">
-                            <li onclick="show_recruit3()"><a href="/recruit">应聘人员基本情况</a></li>
-                            <li onclick="show_recruit1()"><a href="/recruit">应聘人员详情表</a></li>
-                            <li onclick="show_recruit2()"><a href="/recruit">xxxx</a></li>
+                            <li onclick="show_recruit1()"><a href="/recruit">临时人员详情表</a></li>
+                            <li onclick="show_recruit2()"><a href="/recruit">临时人员详情表</a></li>
+                            <li onclick="show_recruit3()"><a href="/recruit">临时人员基本情况</a></li>
                         </ol>
 
                     </li>
@@ -45,30 +46,39 @@
                             <li onclick="show_inner4()"><a href="/attendance">加班管理</a></li>
                         </ol>
                     </li>
-                    <li class="left_li">培训计划</li>
+                    <li class="left_li" id="left_notice">培训计划
+                        <ol class="view">
+                            <li><a href="/notice">发布公告</a></li>
+                            <li><a href="/notice">查看公告</a></li>
+                        </ol>
+                    </li>
                     <li class="left_li"><a href="main.html">其他查询</a></li>
                 </ul>
             </div>
-        </form>
+
 
         <!--右侧内容区-->
         <div id="inner">
-
+            <form method="post" action="" enctype="">
             <!--默认公告区域-->
-            <div id="content">
-                <div id="inner1">
-                    <a href="">培训通知：xx月xx日员工培训,请相关人员做好相应工作调整</a>
-
-                </div>
-
-                <div id="inner2">
-
-                    <a href="">xx年xx月xx日杨中海就中期项目需求进行培训讲解</a>
-                </div>
-                <div id="inner3">
-                    <a href="">xx年xx月xx日石小亮就中期项目后端操作流程进行进行分析讲解</a>
-                </div>
+            <div id="inner1">
+                <p class="in1">主题：<input type="text" name="title"></p>
+                <p class="in2">主讲人<input type="text" name="uname"></p>
+                <p class="in4">发表内容：</p>
+                <textarea rows="10" cols="auto" class="in5" name="content"></textarea>
+                <button class="in6">发表</button>
             </div>
+
+            <div id="inner2" style="display:none;">
+                <p class="inn1">
+                    搜索主题：<input type="text" name="title">
+                </p>
+                <p class="inn2">主题：<a>撒大声地</a></p>
+                <p class="inn3">主讲人：<a>爱仕达所多</a></p>
+                <textarea rows="10" cols="auto" class="inn4"></textarea>
+
+            </div>
+        </form>
         </div>
 
         <!-- 底部 -->

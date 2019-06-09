@@ -3,42 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
-    <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css/basic.css">
-    <script src="../static/js/jquery-1.11.3.js"></script>
-    <script src="../static/js/main.js"></script>
-    <script>
-        var arr = ["left","top","right","bottom"]
-        var arr1 = ["left","bottom","right","top"]
-        var index = 0;
-        function autorun(){
-            var utive1 = "border-"+arr1[index];
-            var utive = "border-"+arr[index];
-
-            $("#inner1").css("border","5px solid blue");
-            $("#inner2").css("border","5px solid blue");
-            $("#inner3").css("border","5px solid blue");
-            $(".top1").css("border","5px solid blue");
-
-            index++;
-            if(index==arr.length){
-                index=0;
-            }
-            $("#inner1").css(utive,"5px solid red");
-            $("#inner2").css(utive1,"5px solid red");
-
-        }
-        $(function (){
-            timer = setInterval(autorun,500);
-        })
-    </script>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/basic.css">
+    <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
+    <script src="static/js/jquery-1.11.3.js"></script>
+    <script src="static/js/main.js"></script>
 </head>
 <body>
     <!--顶部背景-->
     <div id="top">
         <!--顶部内容-->
         <div id="top_content">
-            <img src="" class="top1">
+            <img src="/static/images/e.jpg" class="top1">
             <p class="top2"><b >企业管理系统</b></p>
             <p class="top3"><a href="/">退出</a></p>
         </div>

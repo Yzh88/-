@@ -3,70 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>企业管理系统</title>
-    <link rel="stylesheet" href="../static/css/login.css" type="text/css">
-    <script src="../static/js/login.js"></script>
-    <!--<script>-->
-        <!--window.onload = function (){-->
-            <!--var uinput = $("input");-->
-            <!--uinput.oninput = function (){-->
-
-                <!--console.log(uinput.value);-->
-            <!--};-->
-        <!--}-->
-    <!--</script>-->
-
+    <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
+    <link rel="stylesheet" href="/static/css/login.css" type="text/css">
+    <script src="/static/js/login.js"></script>
     <script>
-        var arr = ["left","top","right","bottom"]
-        var index = 0;
-        function autorun(){
-            var utive = "border-"+arr[index];
-            $("#login").css("border","5px solid blue");
-            index++;
-            if(index==arr.length){
-                index=0;
-            }
-            $("#login").css(utive,"5px solid red");
+        window.onload = function (){
+            var uinput = $("input");
+            uinput.oninput = function (){
+
+                console.log(uinput.value);
+            };
         }
-        $(function (){
-            timer = setInterval(autorun,1000);
-
-
-        })
-
-
     </script>
 </head>
 <body>
 <div id="top">
     <p>[LOGO]企业管理系统丨</p><span>智能企业管理解决方案,从此管理变得简单...</span>
+
 </div>
 <div id="center">
-    <img src="../static/images/login_bg_img.jpg">
+    <img src="/static/images/login_bg_img.jpg">
     <div id="login">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/" method="post" enctype="multipart/form-data">
             <div id="l1">
                 <a href="/">登　录</a>
             </div>
-            <div id="l2">
-                <a href="/register">注　册</a>
-            </div>
             <p id="l6"></p>
-            {%  if  params.flas %}
-                <p id="span1">用户名或者密码错误</p>
+            {%  if  params.flag==0 %}
+                <p class="flag">欢 迎</p>
+            {%  elif  params.flag==1 %}
+                <p class="flag">用户名或者密码错误</p>
+            {% elif params.flag==2  %}
+                <p class="flag">注册成功，请重新登录</p>
             {%  endif %}
             <table id="l3">
                 <tr id="username1">
                     <td class="user1">账　号</td>
                     <td class="user2">
-                        <input class="box" type="text" name="uname" placeholder="请输入统一社会信用码">
+                        <input class="box" type="text" name="registration_no" placeholder="请输入统一社会信用码">
                     </td>
                 </tr>
                 <tr id="l7">
                 <tr>
                     <td class="user1">密　码</td>
                     <td class="user2">
-                        <input class="box" type="password" name="pswd" placeholder="法人身份证号码后6位">
+                        <input class="box" type="password" name="password" placeholder="法人身份证号码后6位">
                     </td>
                 </tr>
                 <tr>
@@ -81,6 +63,7 @@
                         <input type="submit" value="登　录">
                     </td>
                 </tr>
+
             </table>
         </form>
     </div>
