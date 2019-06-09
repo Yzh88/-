@@ -131,7 +131,7 @@ def show_first_page():
 
 
 @app.route('/', methods=['GET', 'POST'])
-def show_first_page():
+def staff_login():
     flag = False
     if request.method == 'GET':
 
