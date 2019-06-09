@@ -10,6 +10,8 @@ body,html {
     color: #333;
 }
 
+
+
 /* 顶部背景 */
 #top{
     width:100%;
@@ -22,7 +24,7 @@ body,html {
 #top_content{
     width:1200px;
     height:80px;
-    background:pink;
+    background:skyblue;
     position:relative;
     left:50%;
     margin-left:-600px;
@@ -33,7 +35,7 @@ body,html {
     height:60px;
     background:#fff;
     margin-left:5%;
-    margin-top:10px;
+    margin-top:4px;
     padding:0;
     float:left;
 }
@@ -78,13 +80,14 @@ body,html {
     width:200px;
     height:650px;
     text-align:center;
-    background:orange;
+    background:#f1f3f4;
     padding:0;
     position:absolute;
     top:20px;
     border-right:2px solid #333;
     font-size:20px;
 }
+
 
 .left_li{
     position:relative;

@@ -3,75 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>员工页面</title>
-    <link rel="stylesheet" href="/static/css/staff.css" type="text/css">
-    <script src="/static/js/jquery-1.11.3.js"></script>
-    <script src="/static/js/staff-view.js"></script>
+    <link rel="stylesheet" href="../static/css/staff.css" type="text/css">
 </head>
 <body>
 <div id="top">
     <p>[LOGO]企业管理系统丨</p><span>智能企业管理解决方案,从此管理变得简单...</span>
 </div>
 <div id="center">
-    <img src="/static/images/login_bg_img.jpg">
-    <div id="content">
-        <p>公司公告通知</p>
-        <textarea rows="10" cols="10" name="content">通知：
-                李九林是的空间阿斯顿恐案件发生弗兰克按时佛家说法是父母案件发生激发搜房奥司法佛拉斯奥积分爱仕达
-            </textarea>
-    </div>
-    <div id="personal">
-        <img src="/static/images/e.jpg">
-        <table id="info">
-            <tr>
-                <th>姓　名：</th>
-                <th colspan="2">李智障</th>
-            </tr>
-            <tr>
-                <th>性　别：</th>
-                <th colspan="2">不晓得</th>
-            </tr>
-            <tr>
-                <th>年　龄：</th>
-                <th colspan="2">52</th>
-            </tr>
-            <tr>
-                <th>所在部门：</th>
-                <th colspan="2">后勤部</th>
-            </tr>
-            <tr>
-                <th>现任职位：</th>
-                <th colspan="2">扫厕所</th>
-            </tr>
-            <tr>
-                <th>入职时间：</th>
-                <th colspan="2">xxxx-xx-xx</th>
-            </tr>
-        </table>
-        <div id="sign_cont">
-            <p style="font-weight:700;font-size:20px;">最近签到记录</p>
-            <p>
-                <span class="cont3">19-05-31:</span>
-                <span class="cont3">8:30 签到</span>
+    <img src="../static/images/login_bg_img.jpg">
+    <form action="" method="post" enctype="multipart/form-data">
+        <div id="inner2">
+            <p class="inn1">
+                搜索主题：<input type="text" name="topic">
             </p>
-            <p class="cont1">
-                <span class="cont3">19-05-31:</span>
-                <span class="cont3">8:30 签到</span>
-            </p>
-            <p class="cont2" style="font-weight:700;font-size:20px;">最近签退记录</p>
-            <p>
-                <span class="cont3">19-05-31:</span>
-                <span class="cont3">8:30 签到</span>
-            </p>
-            <p>
-                <span class="cont3">19-05-31:</span>
-                <span class="cont3">8:30 签到</span>
-            </p>
+            <p class="inn2">主题：<a>撒大声地</a></p>
+            <p class="inn3">主讲人：<a>爱仕达所多</a></p>
+            <textarea rows="10" cols="auto" class="inn4"></textarea>
+            <button>搜索</button>
+
         </div>
-        <div id="sign">
-            <button class="sign_in">签到</button>
-            <button class="sign_out">签退</button>
+        <div id="personal">
+            <img src="../static/images/e.jpg">
+            <table id="info">
+                <tr>
+                    <th>姓　名：</th>
+                    <th colspan="2">李智障</th>
+                </tr>
+                <tr>
+                    <th>性　别：</th>
+                    <th colspan="2">不晓得</th>
+                </tr>
+                <tr>
+                    <th>年　龄：</th>
+                    <th colspan="2">52</th>
+                </tr>
+                <tr>
+                    <th>所在部门：</th>
+                    <th colspan="2">后勤部</th>
+                </tr>
+                <tr>
+                    <th>现任职位：</th>
+                    <th colspan="2">扫厕所</th>
+                </tr>
+                <tr>
+                    <th>入职时间：</th>
+                    <th colspan="2">xxxx-xx-xx</th>
+                </tr>
+            </table>
+            <div id="sign_cont">
+                <p style="font-weight:700px;font-size:20px;">最近签到记录</p>
+                <p>
+                    <span class="cont3">19-05-31:</span>
+                    <span class="cont3">8:30 签到</span>
+                </p>
+                <p class="cont1">
+                    <span class="cont3">19-05-31:</span>
+                    <span class="cont3">8:30 签到</span>
+                </p>
+                <p class="cont2" style="font-weight:700px;font-size:20px;">最近签退记录</p>
+                <p>
+                    <span class="cont3">19-05-31:</span>
+                    <span class="cont3">8:30 签到</span>
+                </p>
+                <p>
+                    <span class="cont3">19-05-31:</span>
+                    <span class="cont3">8:30 签到</span>
+                </p>
+            </div>
+            <div id="sign">
+                <button class="sign_in">签到</button>
+                <button class="sign_out">签退</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 <div id="bottom">
     <a href="">　公司介绍　丨</a>
