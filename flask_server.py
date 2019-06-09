@@ -102,6 +102,7 @@ def add_data():
     db.session.add(temp_details)
     return '1'
 
+
 @app.route('/',methods=['GET', 'POST'])
 def show_first_page():
     flag = 0
