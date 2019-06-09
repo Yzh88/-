@@ -204,7 +204,7 @@ def attendance():
     pageSize = 10
     currentPage = int(request.args.get('currentPage', 1))
     ost = (currentPage - 1) * pageSize
-    pers = PersBase.query.filter_by(status=True).offset(ost).limit(pageSize).all()
+    pers = TempBase.query.filter_by(status=True).offset(ost).limit(pageSize).all()
     totalSize_bases = db.session.query(TempBase).count()
     lastPage_bases = math.ceil(totalSize_bases / pageSize)
     prevPage_bases = 1
@@ -224,7 +224,7 @@ def notice():
 
 @app.route("/add")
 def add():
-    for i in range(100):
+    for i in range(30):
         pers = TempBase()
         xa = random.randint(0, 9)
         xb = random.randint(1111, 9999)
