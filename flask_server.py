@@ -99,10 +99,10 @@ class EnterpriseDate(db.Model):  # 企业基本信息表
 class TrainningNotice(db.Model):  # 培训通告
     __tablename__ = 'trainning_notice'
     notice_id = db.Column(db.Integer, primary_key=True)
-    topic = db.Column(db.String(64), nullable=False)
-    notice_uname = db.Column(db.String(64), nullable=False)
-    notice_time = db.Column(db.Integer, nullable=False)
-    notice_cot = db.Column(db.String(1024), nullable=False)
+    topic = db.Column(db.String(64))
+    notice_uname = db.Column(db.String(64))
+    notice_time = db.Column(db.Integer)
+    notice_cot = db.Column(db.String(1024))
 
 
 @app.route('/add_data')
@@ -289,7 +289,7 @@ def staff_login_view():
             birthday = "".join(pers.birthday.split("-"))
             years = datetime.now().year
             age = years - int(birthday[:4])
-            notice = TrainningNotice()
+            notice = TrainningNotice.query.first()
             if birthday == request.form["birthday"]:
                 return render_template("staff-view.html", params=locals())
             else:
