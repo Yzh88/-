@@ -283,8 +283,9 @@ def staff_login_view():
         try:
             pers = TempBase.query.filter_by(tel=tel).first()
             birthday = "".join(pers.birthday.split("-"))
-            print(birthday)
-            print(request.form["birthday"])
+            years = datetime.now().year
+            print(birthday[:3])
+            age = years - int(birthday[:4])
             if birthday == request.form["birthday"]:
                 return render_template("staff-view.html", params=locals())
             else:
