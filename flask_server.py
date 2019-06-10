@@ -67,6 +67,7 @@ class PersBase(db.Model):  # 正式职员 基本 信息表
     job = db.Column(db.String(32))
     base_salary = db.Column(db.Float)
     performance = db.Column(db.Float)
+    attendance = db.relationship('Attendance', backref="course", lazy="dynamic")
 
 
 class PersDetails(db.Model):  # 职员 详细 信息表
@@ -103,6 +104,16 @@ class TrainningNotice(db.Model):  # 培训通告
     notice_uname = db.Column(db.String(64))
     notice_time = db.Column(db.Integer)
     notice_cot = db.Column(db.String(1024))
+
+
+class Attendance(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    per_name = db.Column(db.String(32))
+    in_time = db.Column(db.DateTime)
+    out_time = db.Column(db.DateTime)
+    sign_data = db.Column(db.Date)
+    per_status = db.Column(db.String(16))
+    per_id = db.Column(db.Integer, db.ForeignKey('pers_base.id'))
 
 
 @app.route('/add_data')
@@ -248,9 +259,17 @@ def attendance():
 
 @app.route("/staff_view")
 def staff_view():
-    id = db.session.query(func.max(TrainningNotice.notice_id)).first()[0]
-    notice = TrainningNotice.query.filter_by(notice_id=id).first()
-    return render_template('staff-view.html', notice=notice)
+    if 'in' in request.args:
+        id = request.args.get('in')
+        pers = PersBase.query.filter_by(num=id).first()
+        pers.attendance.id = id
+        pers.attendance.in_time = datetime.now()
+
+    else:
+        id = request.args.get('out')
+        pers = PersBase.query.filter_by(num=id).first()
+        pers.attendance.id = id
+        pers.attendance.out_time = datetime.now()
 
 
 @app.route("/temporary", methods=["GET", "POST"])
@@ -285,7 +304,7 @@ def staff_login_view():
     else:
         tel = request.form["tel"]
         try:
-            pers = TempBase.query.filter_by(tel=tel).first()
+            pers = PersBase.query.filter_by(tel=tel).first()
             birthday = "".join(pers.birthday.split("-"))
             years = datetime.now().year
             age = years - int(birthday[:4])
@@ -319,7 +338,6 @@ def show_notice():
     notice.notice_cot = cot
     try:
         db.session.add(notice)
-        db.session.commit()
         dic = {
             'status': 1,
             'text': '发布成功！'
@@ -329,7 +347,7 @@ def show_notice():
         print(e)
         dic = {
             'status': 0,
-            'text': '发布错误！'
+            'text': '发布失败！'
         }
         return json.dumps(dic)
 
