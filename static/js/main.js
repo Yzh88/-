@@ -51,41 +51,22 @@ function dele4() {
 //轮播效果
 var arr = ["left","top","right","bottom"]
 var arr1 = ["left","bottom","right","top"]
-var arr2 = ['red',"pink","blue","yellow"]
 var index = 0;
 function autorun(){
     var utive1 = "border-"+arr1[index];
     var utive = "border-"+arr[index];
-    var color = "5px solid "+arr2[index];
-    $("#inner1").css(utive,color);
-    $("#inner2").css(utive,color);
-    $("#inner3").css(utive,color);
-    $(".top1").css(utive1,color);
 
+    $("#inner1").css("border","5px solid blue");
+    $("#inner2").css("border","5px solid blue");
+    $("#inner3").css("border","5px solid blue");
+    $(".top1").css("border","1px solid blue");
     index++;
     if(index==arr.length){
         index=0;
-         $("#inner1").css("border","5px solid green");
-         $("#inner2").css("border","5px solid green");
-         $("#inner3").css("border","5px solid green");
-         $(".top1").css("border","5px solid green");
     }
-    $("#inner1").css(utive,color);
-    $("#inner2").css(utive,color);
-    $("#inner3").css(utive,color);
-    $(".top1").css(utive1,color);
+    $("#inner1").css(utive,"5px solid red");
+    $("#inner2").css(utive1,"5px solid red");
+    $("#inner3").css(utive1,"5px solid red");
+    $(".top1").css(utive1,"5px solid red");
 }
-$(function (){
-    timer = setInterval(autorun,500);
-    var isactive = false;
-    $("#left_notice").click(function (){
-        isactive = !isactive;
-        if(isactive){
-            $("#inner1").css("display","none");
-            $("#inner2").css("display","block");
-        }else{
-            $("#inner1").css("display","block");
-            $("#inner2").css("display","none");
-        }
-    })
-})
+

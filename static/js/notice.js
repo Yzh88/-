@@ -9,8 +9,6 @@ function autorun(){
     $("#inner2").css("border","5px solid blue");
     $("#inner3").css("border","5px solid blue");
     $(".top1").css("border","1px solid blue");
-
-
     index++;
     if(index==arr.length){
         index=0;
@@ -19,29 +17,18 @@ function autorun(){
     $("#inner2").css(utive1,"5px solid red");
     $("#inner3").css(utive1,"5px solid red");
     $(".top1").css(utive1,"5px solid red");
-
 }
+
 $(function (){
-    timer = setInterval(autorun,500);
-    var isactive = false;
-    $("#inner1").click(function (){
-        isactive = !isactive;
-        if(isactive){
-            $("#inner1").css("display","block");
-            $("#inner2").css("display","none");
-        }else{
-            $("#inner1").css("display","none");
-            $("#inner2").css("display","block");
-        }
+   timer = setInterval(autorun,1000);
+    $("#show_notice").click(function (){
+        $("#inner1").css("display","block");
+        $("#inner2").css("display","none");
     })
-     $("#inner2").click(function (){
-            isactive = !isactive;
-            if(isactive){
-                $("#inner1").css("display","none");
-                $("#inner2").css("display","block");
-            }else{
-                $("#inner1").css("display","block");
-                $("#inner2").css("display","none");
-            }
+
+     $("#find_notice").click(function (){
+
+        $("#inner1").css("display","none");
+        $("#inner2").css("display","block");
         })
 })

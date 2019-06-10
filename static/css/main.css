@@ -110,7 +110,7 @@ body,html {
 
     height:500px;
     /*background:orange;*/
-    position:absolute;
+    position:relative;
     top:20px;
     left:350px;
 }
@@ -144,17 +144,36 @@ body,html {
 }
 
 /*默认公告区域*/
-#inner1,#inner2,#inner3 {
-    margin-right:5em;
-    float:left;
-    width:300px;
-    height:300px;
-    border:1px solid black;
+/* 公告内容 */
+#content{
+    position:absolute;
+    background:#fff;
+    width:500px;
+    height:400px;
+    margin-top:-500px;
+    margin-left:100px;
+    text-align:center;
+    border:1px solid pink;
+    border-radius:10px;
 }
-#inner3{
-    margin-top:30px;
+.c1{
+    color:#333;
+    font-weight:700px;
+    font-size:25px;
+    margin-top:20px;
 }
-
+.c2,.c3,.c4{
+    margin-top:10px;
+    color:#333;
+    font-weight:700px;
+    font-size:20px;
+    text-align:left;
+    padding-left:10px;
+}
+.c5{
+    width:495px;
+    height:220px;
+}
 /*超链接设置*/
 
 

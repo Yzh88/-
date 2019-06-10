@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
     <script src="static/js/jquery-1.11.3.js"></script>
     <script src="static/js/main.js"></script>
+
 </head>
 <body>
     <!--顶部背景-->
@@ -55,46 +56,7 @@
             <div id="inner">
                 <table border="1px" id="table1"  style="display:none;">
                     <!--考勤记录-->
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
+
                     <tr>
                         <th colspan="6"><button onclick="dele1()">关闭</button></th>
                     </tr>
@@ -127,38 +89,7 @@
                     </tr>
                 </table>
                 <table border="1px" id="table3" style="display:none;">
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
+
                     <tr>
                         <th>工号</th>
                         <th>姓名</th>
@@ -173,46 +104,7 @@
 
                 </table>
                 <table border="1px" id="table4" style="display:none;">
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
-                    <tr>
-                        <th>工号</th>
-                        <th>姓名</th>
-                        <th>工作状态</th>
-                        <th>工作天数</th>
-                        <th>入职时间</th>
-                        <th>工作天数</th>
-                    </tr>
+
                     <tr>
                         <th colspan="6"><button onclick="dele4()">关闭</button></th>
                     </tr>
@@ -220,12 +112,22 @@
                 </table>
                 <!--默认公告区域-->
                 <div id="content">
-                    <div id="inner1">
-                        <p>公告发布</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div id="content1">
+                            <p class="c1">公司公告通知</p>
+                            <p class="c2">主题：<span>{{notice.topic}}</span></p>
+                            <p class="c3">主讲人：<span>{{notice.notice_uname}}</span></p>
+                            <p class="c4">内容：</p>
+                            <textarea class="c5" rows="10" cols="auto" onfocus=this.blur()>{{notice.notice_cot}}</textarea>
+                        </div>
+                        <div id="content2">
+                            <p class="c1">公司公告通知</p>
+                            <p class="c2">主题：<span>{{notice_first.topic}}</span></p>
+                            <p class="c3">主讲人：<span>{{notice_first.notice_uname}}</span></p>
+                            <p class="c4">内容：</p>
+                            <textarea class="c5" rows="10" cols="auto" onfocus=this.blur()>{{notice_first.notice_cot}}</textarea>
+                        </div>
 
-                    </div>
-                    <div id="inner2">暂无公告</div>
-                    <div id="inner3">暂无公告</div>
                 </div>
             </div>
 

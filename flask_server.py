@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Flask, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
@@ -100,7 +102,7 @@ class TrainningNotice(db.Model):  # 培训通告
     notice_id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(64), nullable=False)
     notice_uname = db.Column(db.String(64), nullable=False)
-    notice_time = db.Column(db.Integer, nullable=False)
+    notice_time = db.Column(db.String(64), nullable=False)
     notice_cot = db.Column(db.String(1024), nullable=False)
 
 
@@ -132,7 +134,7 @@ def show_first_page():
             if username in user.registration_no:
                 if password in user.password:
                     print(user.registration_no, user.password)
-                    return render_template('main.html')
+                    return redirect('/main')
         else:
             flag = 1
             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
@@ -155,13 +157,6 @@ def show_register():
 
         flag = 2
         return render_template('login.html', params=locals())
-
-
-@app.route('/main', methods=['GET', 'POST'])
-@app.route('/main.html', methods=['GET', 'POST'])
-def main_page():
-    return render_template('main.html')
-
 
 @app.route('/recruit')
 @app.route('/recruit.html')
@@ -229,6 +224,19 @@ def staff_login():
             return render_template('staff-login.html', params=locals())  # 账号不存在 render_template('/')
 
 
+@app.route('/main', methods=['GET', 'POST'])
+@app.route('/main.html', methods=['GET', 'POST'])
+def main_page():
+    id = db.session.query(func.max(TrainningNotice.notice_id)).first()[0]
+    notice = TrainningNotice.query.filter_by(notice_id=id).first()
+
+    id_first = db.session.query(func.min(TrainningNotice.notice_id)).first()[0]
+    notice_first = TrainningNotice.query.filter_by(notice_id=id_first).first()
+    return render_template('main.html', notice=notice,notice_first=notice_first)
+
+
+
+
 @app.route('/notice')
 @app.route('/notice.html')
 def notice():
@@ -239,7 +247,8 @@ def notice():
 def show_notice():
     topic = request.form['topic']
     uname = request.form['uname']
-    date1 = time()
+    date1 = datetime.datetime.now().strftime("%Y/%m/%d %H:%M")
+    print(date1)
     cot = request.form['content']
     notice = TrainningNotice()
     notice.topic = topic
@@ -270,7 +279,8 @@ def content2():
     dic = {
         'topic': cots.topic,
         'uname': cots.notice_uname,
-        'cot': cots.notice_cot
+        'cot': cots.notice_cot,
+        'time':cots.notice_time
     }
     return json.dumps(dic)
 

@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="/static/css/notice.css">
     <link rel="stylesheet" href="/static/css/basic.css">
     <script src="/static/js/jquery-1.11.3.js"></script>
-    <script src="/static/js/main.js"></script>
+    <script src="/static/js/notice.js"></script>
+
     <script>
         $(function(){
-            $(".in6").click(function(){
+            $(".in7").click(function(){
                 $.ajax({
                     url:"/show-notice",
                     type:"post",
@@ -31,7 +32,6 @@
                     }
                 });
             });
-
             $(".inn5").click(function(){
                 $.ajax({
                     url:"/content2",
@@ -43,8 +43,10 @@
                     success:function(data){
                         $("#t1").val(data.topic)
                         $("#t2").val(data.uname)
+                        $("#t3").val(data.time)
                         $(".inn4").html(data.cot)
                     }
+
                 });
             });
         });
@@ -91,8 +93,8 @@
                     </li>
                     <li class="left_li" id="left_notice">培训计划
                         <ol class="view">
-                            <li>发布公告</li>
-                            <li>查看公告</li>
+                            <li id="show_notice">发布公告</li>
+                            <li id="find_notice">查看公告</li>
                         </ol>
                     </li>
                     <li class="left_li"><a href="main.html">其他查询</a></li>
@@ -103,15 +105,15 @@
         <!--右侧内容区-->
         <div id="inner">
             <!--默认公告区域-->
-            <div id="inner1">
-                <p class="in1">主题：<input type="text" name="topic" id="topic"></p>
-                <p class="in2">主讲人<input type="text" name="uname" id="uname"></p>
+            <div id="inner1" style="display:none;">
+                <p class="in1">主题：<input type="text" name="topic" id="topic" style="font-size:20px;"></p>
+                <p class="in2">主讲人<input type="text" name="uname" id="uname" style="font-size:20px;"></p>
                 <p class="in4">发表内容：</p>
-                <textarea rows="10" cols="auto" class="in5" name="content" id="cot"></textarea>
-                <button class="in6">发表</button>
+                <textarea rows="10" cols="auto" class="in5" name="content" id="cot" style="font-size:20px;"></textarea>
+                <p class="in6"><button style="font-size:18px;" class="in7">发表</button></p>
             </div>
             <!--搜索主题-->
-            <div id="inner2" style="display:none;">
+            <div id="inner2">
                 <p class="inn1">
                     搜索主题：<input type="text" name="topic2" id="topic2">
                     <button class="inn5">搜索</button>
@@ -121,6 +123,9 @@
                 </p>
                 <p class="inn3">主讲人：
                     <input onfocus=this.blur() id="t2">
+                </p>
+                <p class="inn6">时间：
+                    <input onfocus=this.blur() id="t3">
                 </p>
                 <textarea rows="10" cols="auto" class="inn4" onfocus=this.blur()></textarea>
 
