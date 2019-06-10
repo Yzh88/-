@@ -36,7 +36,7 @@
 
                         </ol>
                     </li>
-                    <li class="left_li"><a>考勤管理</a>
+                    <li class="left_li"><a href="/attendance">考勤管理</a>
                         <ol class="view">
                             <!--<li>考勤数据采集</li>-->
                             <li onclick="show_inner1()"><a href="attendance.html">考勤记录</a></li>
@@ -45,8 +45,18 @@
                             <li onclick="show_inner4()"><a href="attendance.html">加班管理</a></li>
                         </ol>
                     </li>
-                    <li class="left_li"><a href="notice.html">培训计划</a></li>
-                    <li class="left_li"><a href="main.html">其他查询</a></li>
+                    <li class="left_li" id="left_notice"><a href="/notice">培训计划</a>
+                        <ol class="view">
+                            <li id="show_notice"><a href="/notice">发布公告</a></li>
+                            <li id="find_notice"><a href="/notice">查看公告</a></li>
+                        </ol>
+                    </li>
+                    <li class="left_li"><a href="/main">其他查询</a>
+                        <ol class="view">
+                            <li id="content1_main"><a href="/main">最近公告信息</a></li>
+                            <li id="content2_main"><a href="/main">第一次公告信息</a></li>
+                        </ol>
+                    </li>
                 </ul>
             </div>
         </form>

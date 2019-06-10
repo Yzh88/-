@@ -20,7 +20,7 @@ function autorun(){
 }
 
 $(function (){
-   timer = setInterval(autorun,1000);
+   timer = setInterval(autorun,500);
     $("#show_notice").click(function (){
         $("#inner1").css("display","block");
         $("#inner2").css("display","none");
@@ -31,4 +31,18 @@ $(function (){
         $("#inner1").css("display","none");
         $("#inner2").css("display","block");
         })
+
+     $("#inner1").mouseover(function (){
+            clearInterval(timer);
+         });
+     $("#inner2").mouseover(function (){
+             clearInterval(timer);
+          });
+     $("#inner1").mouseout(function (){
+             timer = setInterval(autorun,500);
+          });
+     $("#inner2").mouseout(function (){
+             timer = setInterval(autorun,500);
+           })
+
 })
