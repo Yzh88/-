@@ -7,6 +7,8 @@ from flask_migrate import Migrate, MigrateCommand
 import math
 
 # 创建Flask的程序实例
+from sqlalchemy import func
+
 app = Flask(__name__)
 # 连接到MySQL中flaskDB数据库
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456@127.0.0.1:3306/personnel_management"
@@ -94,13 +96,21 @@ class EnterpriseDate(db.Model):  # 企业基本信息表
     password = db.Column(db.String(40), nullable=False)
 
 
+# class TrainningNotice(db.Model):  # 培训通告
+#     __tablename__ = 'trainning_notice'
+#     notice_id = db.Column(db.Integer, primary_key=True)
+#     topic = db.Column(db.String(64))
+#     notice_uname = db.Column(db.String(64))
+#     notice_time = db.Column(db.Integer)
+#     notice_cot = db.Column(db.String(1024))
+
 class TrainningNotice(db.Model):  # 培训通告
     __tablename__ = 'trainning_notice'
     notice_id = db.Column(db.Integer, primary_key=True)
-    topic = db.Column(db.String(64))
-    notice_uname = db.Column(db.String(64))
-    notice_time = db.Column(db.Integer)
-    notice_cot = db.Column(db.String(1024))
+    topic = db.Column(db.String(64), nullable=False)
+    notice_uname = db.Column(db.String(64), nullable=False)
+    notice_time = db.Column(db.String(64), nullable=False)
+    notice_cot = db.Column(db.String(1024), nullable=False)
 
 
 class Attendance(db.Model):
@@ -126,6 +136,25 @@ def add_data():
     return '1'
 
 
+# @app.route('/', methods=['GET', 'POST'])
+# def show_first_page():
+#     flag = 0
+#     if request.method == 'GET':
+#
+#         return render_template('login.html', params=locals())
+#     else:
+#
+#         username = request.form.get('registration_no')
+#         password = request.form.get('password')
+#         users = db.session.query(EnterpriseDate).all()
+#         for user in users:
+#             if username == user.registration_no:
+#                 if password == user.password:
+#                     print(user.registration_no, user.password)
+#                     return render_template('main.html')
+#         else:
+#             flag = 1
+#             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
 @app.route('/', methods=['GET', 'POST'])
 def show_first_page():
     flag = 0
@@ -138,10 +167,10 @@ def show_first_page():
         password = request.form.get('password')
         users = db.session.query(EnterpriseDate).all()
         for user in users:
-            if username == user.registration_no:
-                if password == user.password:
+            if username in user.registration_no:
+                if password in user.password:
                     print(user.registration_no, user.password)
-                    return render_template('main.html')
+                    return redirect('/main')
         else:
             flag = 1
             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
@@ -166,10 +195,20 @@ def show_register():
         return render_template('login.html', params=locals())
 
 
+# @app.route('/main', methods=['GET', 'POST'])
+# @app.route('/main.html', methods=['GET', 'POST'])
+# def main_page():
+#
+#     return render_template('main.html')
 @app.route('/main', methods=['GET', 'POST'])
 @app.route('/main.html', methods=['GET', 'POST'])
 def main_page():
-    return render_template('main.html')
+    id = db.session.query(func.max(TrainningNotice.notice_id)).first()[0]
+    notice = TrainningNotice.query.filter_by(notice_id=id).first()
+
+    id_first = db.session.query(func.min(TrainningNotice.notice_id)).first()[0]
+    notice_first = TrainningNotice.query.filter_by(notice_id=id_first).first()
+    return render_template('main.html', notice=notice, notice_first=notice_first)
 
 
 @app.route('/recruit')
@@ -302,17 +341,46 @@ def staff_login_view():
             return render_template("staff-login.html", flag=flag)
 
 
+# @app.route('/notice')
+# @app.route('/notice.html')
+# def notice():
+#     return render_template('notice.html')
 @app.route('/notice')
 @app.route('/notice.html')
 def notice():
     return render_template('notice.html')
 
 
+# @app.route('/show-notice', methods=['POST'])
+# def show_notice():
+#     topic = request.form['topic']
+#     uname = request.form['uname']
+#     date1 = datetime.now()
+#     cot = request.form['content']
+#     notice = TrainningNotice()
+#     notice.topic = topic
+#     notice.notice_uname = uname
+#     notice.notice_time = date1
+#     notice.notice_cot = cot
+#     try:
+#         db.session.add(notice)
+#         dic = {
+#             'status': 1,
+#             'text': '发布成功！'
+#         }
+#         return json.dumps(dic)
+#     except Exception as e:
+#         print(e)
+#         dic = {
+#             'status': 0,
+#             'text': '发布失败！'
+#         }
+#         return json.dumps(dic)
 @app.route('/show-notice', methods=['POST'])
 def show_notice():
     topic = request.form['topic']
     uname = request.form['uname']
-    date1 = datetime.now()
+    date1 = datetime.now().strftime("%Y/%m/%d %H:%M")
     cot = request.form['content']
     notice = TrainningNotice()
     notice.topic = topic
@@ -321,6 +389,7 @@ def show_notice():
     notice.notice_cot = cot
     try:
         db.session.add(notice)
+        db.session.commit()
         dic = {
             'status': 1,
             'text': '发布成功！'
@@ -330,7 +399,7 @@ def show_notice():
         print(e)
         dic = {
             'status': 0,
-            'text': '发布失败！'
+            'text': '发布错误！'
         }
         return json.dumps(dic)
 
@@ -342,11 +411,24 @@ def content2():
     dic = {
         'topic': cots.topic,
         'uname': cots.notice_uname,
-        'cot': cots.notice_cot
+        'cot': cots.notice_cot,
+        'time': cots.notice_time
     }
     return json.dumps(dic)
 
 
+# @app.route('/content2', methods=['POST'])
+# def content2():
+#     topic2 = request.form['topic2']
+#     cots = TrainningNotice.query.filter_by(topic=topic2).first()
+#     dic = {
+#         'topic': cots.topic,
+#         'uname': cots.notice_uname,
+#         'cot': cots.notice_cot
+#     }
+#     return json.dumps(dic)
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    manager.run()
     # manager.run()

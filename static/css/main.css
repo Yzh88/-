@@ -107,10 +107,10 @@ body,html {
 
 /* 右侧内容区 */
 #inner{
-
-    height:500px;
+    width:900px;
+    height:800px;
     /*background:orange;*/
-    position:absolute;
+    position:relative;
     top:20px;
     left:350px;
 }
@@ -121,7 +121,6 @@ body,html {
     top:700px;
     left:340px;
 }
-
 
 /*悬停效果*/
 
@@ -144,20 +143,67 @@ body,html {
 }
 
 /*默认公告区域*/
-#inner1,#inner2,#inner3 {
-    margin-right:5em;
-    float:left;
-    width:300px;
-    height:300px;
+/*content1.content边框设置*/
+#content1,#content2{
+    width:800px;
+    height:280px;
+    border:1px solid red;
+}
+
+#inner1{
+    position:absolute;
+    margin-left:50px;
+    width:800px;
+    height:350px;
     border:1px solid black;
+    padding:0;
+    text-align:left;
+    font-size:18px;
+    font-weight:700;
 }
-#inner3{
-    margin-top:30px;
+.in1,.in2{
+    margin-top:10px;
+    margin-left:10px;
+    float:left;
+}
+.in1>input,.in2>input,.in3>input{
+    width:200px;
+    height:20px;
+}
+.in3{
+    width:790px;
+    float:left;;
+    margin-left:10px;
+    margin-top:10px;
+}
+.in4{
+    width:790px;
+    float:left;
+    font-weight:700px;
+    margin-top:10px;
+    margin-left:10px;
+}
+.in5{
+    float:left;
+    width:796px;
+    height:190px;
+    margin-top:10px;
+    font-size:20px;
+    border:1px solid black;
+    border-left:none;
 }
 
-/*超链接设置*/
+.in6{
+    width:796px;
+    margin-top:300px;
+    text-align:center;
+}
 
-
+/*文本输入框*/
+.c5{
+    width:794px;
+    height:178px;
+}
 
 
 

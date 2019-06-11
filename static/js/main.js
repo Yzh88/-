@@ -48,44 +48,47 @@ function dele4() {
     $("#content").css("display","");
 }
 
-//轮播效果
+//边框轮播效果
 var arr = ["left","top","right","bottom"]
 var arr1 = ["left","bottom","right","top"]
-var arr2 = ['red',"pink","blue","yellow"]
 var index = 0;
 function autorun(){
     var utive1 = "border-"+arr1[index];
     var utive = "border-"+arr[index];
-    var color = "5px solid "+arr2[index];
-    $("#inner1").css(utive,color);
-    $("#inner2").css(utive,color);
-    $("#inner3").css(utive,color);
-    $(".top1").css(utive1,color);
-
+    $("#content1").css("border","5px solid blue");
+    $("#content2").css("border","5px solid blue");
+    $(".top1").css("border","1px solid blue");
     index++;
     if(index==arr.length){
         index=0;
-         $("#inner1").css("border","5px solid green");
-         $("#inner2").css("border","5px solid green");
-         $("#inner3").css("border","5px solid green");
-         $(".top1").css("border","5px solid green");
     }
-    $("#inner1").css(utive,color);
-    $("#inner2").css(utive,color);
-    $("#inner3").css(utive,color);
-    $(".top1").css(utive1,color);
+    $("#content1").css(utive,"5px solid red");
+    $("#content2").css(utive1,"5px solid red");
+    $(".top1").css(utive1,"5px solid red");
 }
 $(function (){
-    timer = setInterval(autorun,500);
-    var isactive = false;
-    $("#left_notice").click(function (){
-        isactive = !isactive;
-        if(isactive){
-            $("#inner1").css("display","none");
-            $("#inner2").css("display","block");
-        }else{
-            $("#inner1").css("display","block");
-            $("#inner2").css("display","none");
-        }
-    })
+    var timer = setInterval(autorun,500);
+    $("#content1_main").click(function (){
+        $("#content1").css('display','block');
+        $("#content2").css('display','none');
+    });
+     $("#content2_main").click(function (){
+        $("#content1").css('display','none');
+        $("#content2").css('display','block');
+        });
+     $("#content1").mouseover(function (){
+        clearInterval(timer);
+     });
+     $("#content2").mouseover(function (){
+             clearInterval(timer);
+          });
+     $("#content1").mouseout(function (){
+             timer = setInterval(autorun,500);
+          });
+     $("#content2").mouseout(function (){
+             timer = setInterval(autorun,500);
+           })
+
 })
+
+

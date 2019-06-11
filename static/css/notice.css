@@ -149,6 +149,7 @@ body,html {
 }
 
 /*默认公告区域*/
+
 #inner1{
     position:absolute;
     margin-left:50px;
@@ -161,6 +162,7 @@ body,html {
     font-weight:700;
 }
 .in1,.in2{
+    margin-top:10px;
     margin-left:10px;
     float:left;
 }
@@ -192,15 +194,16 @@ body,html {
 }
 
 .in6{
-    margin-left:-150px;
-    margin-top:320px;
+    width:796px;
+    margin-top:300px;
+    text-align:center;
 }
 
 /*搜索区域处理*/
 #inner2{
     margin-left:50px;
     width:800px;
-    height:300px;
+    height:350px;
     border:1px solid black;
     font-size:18px;
     font-weight:700;
@@ -216,24 +219,41 @@ body,html {
 }
 .inn1>input{
     height:20px;
+    font-size:20px;
+    width:180px;
 }
 .inn2{
     float:left;
-    margin-left:10px;
+    margin-left:20px;
     margin-top:20px;
 }
 .inn2>input{
     height:20px;
     border:none;
+    font-size:20px;
+    width:180px;
 }
 .inn3{
     float:left;
-    margin-left:50px;
+    margin-left:20px;
     margin-top:20px;
 }
 .inn3>input{
     height:20px;
     border:none;
+    font-size:20px;
+    width:180px;
+}
+.inn6{
+    float:left;
+    margin-left:20px;
+    margin-top:20px;
+}
+.inn6>input{
+    height:20px;
+    border:none;
+    font-size:20px;
+    width:180px;
 }
 .inn4{
     width:796px;
@@ -242,6 +262,7 @@ body,html {
     margin-top:20px;
     border:1px solid black;
     border-left:none;
+    font-size:20px;
 }
 .inn5{
     margin-left:20px;
