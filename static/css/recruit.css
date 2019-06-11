@@ -168,14 +168,12 @@ body,html {
 #detail{
     float:left
     position:absolute;
-    margin-top:-20px;
+    margin-top:-50px;
     margin-left:100px;
     border:1px solid black;
+    background:#f1f3f4;
 }
 
-#exercise h3{
-    margin-left:-700px;
-}
 
 
 
