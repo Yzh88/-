@@ -106,7 +106,7 @@ body,html {
 
 /* 右侧内容区 */
 #inner{
-    height:500px;
+    height:1000px;
     /*background:orange;*/
     position:absolute;
     top:20px;
@@ -137,7 +137,7 @@ body,html {
 
 
 /*表格处理*/
-#table1,#table2,#table3,#table4{
+#table1,#table2,#table3{
     width:700px;
 
 }
@@ -164,7 +164,10 @@ body,html {
     width:50px;
 }
 
-
+/*详情处理*/
+#detail{
+    height:1000px;
+}
 
 
 

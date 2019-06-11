@@ -60,6 +60,8 @@ function autorun(){
     $(".top1").css(utive1,"5px solid red");
 
 }
+
+
 $(function (){
     timer = setInterval(autorun,500);
     var isactive = false;
@@ -72,5 +74,17 @@ $(function (){
             $("#inner1").css("display","block");
             $("#inner2").css("display","none");
         }
+    })
+    var isrecruit = false;
+    $(".find_recruit").click(function (){
+        isrecruit = !isrecruit;
+        if(isrecruit){
+            $("#detail").css("display",'block');
+        }else{
+            $("#detail").css("display",'none');
+        }
+    })
+    $(".work_exercise").click(function (){
+        $("detail").css("display","none")
     })
 })
