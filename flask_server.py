@@ -1,12 +1,9 @@
 import time
 from datetime import datetime
-
 from flask import Flask, request, render_template, redirect, json
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from sqlalchemy import or_, func
-
 import math
 
 # 创建Flask的程序实例
@@ -129,9 +126,9 @@ def add_data():
     return '1'
 
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def show_first_page():
-    flag = False
+    flag = 0
     if request.method == 'GET':
 
         return render_template('login.html', params=locals())
@@ -141,34 +138,13 @@ def show_first_page():
         password = request.form.get('password')
         users = db.session.query(EnterpriseDate).all()
         for user in users:
-            if username in user.registration_no:
-                if password in user.password:
+            if username == user.registration_no:
+                if password == user.password:
                     print(user.registration_no, user.password)
                     return render_template('main.html')
         else:
-            flag = True
+            flag = 1
             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
-
-
-@app.route('/', methods=['GET', 'POST'])
-def staff_login():
-    flag = False
-    if request.method == 'GET':
-
-        return render_template('staff-login.html', params=locals())
-    else:
-
-        username = request.form.get('registration_no')
-        password = request.form.get('password')
-        users = db.session.query(EnterpriseDate).all()
-        for user in users:
-            if username in user.registration_no:
-                if password in user.password:
-                    print(user.registration_no, user.password)
-                    return render_template('main.html')
-        else:
-            flag = True
-            return render_template('staff-login.html', params=locals())
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -185,6 +161,8 @@ def show_register():
         enterprise.ceo_id = 1
         enterprise.password = request.form.get('password')
         db.session.add(enterprise)
+
+        flag = 2
         return render_template('login.html', params=locals())
 
 
@@ -197,19 +175,11 @@ def main_page():
 @app.route('/recruit')
 @app.route('/recruit.html')
 def recruit():
-    pageSize = 1
-    currentPage = int(request.args.get('currentPage', 1))
-    ost = (currentPage - 1) * pageSize
-
     pageSize = 5
     currentPage = int(request.args.get('currentPage', 1))
     ost = (currentPage - 1) * pageSize
     temp_bases = db.session.query(TempBase).offset(ost).limit(pageSize).all()
     totalSize_bases = db.session.query(TempBase).count()
-    totalSize_details = db.session.query(TempDetails).count()
-    lastPage_bases = math.ceil(totalSize_bases / pageSize)
-    lastPage_details = math.ceil(totalSize_details / pageSize)
-
     lastPage_bases = math.ceil(totalSize_bases / pageSize)
     prevPage_bases = 1
     if currentPage > 1:
@@ -218,10 +188,17 @@ def recruit():
     if currentPage < lastPage_bases:
         nextPage_bases = currentPage + 1
 
-    pageSize_d = 5
+    return render_template('recruit.html', params=locals())
+
+
+@app.route('/recruit_d')
+@app.route('/recruit_d.html')
+def recruit_d():
+    pageSize_d = 1
     currentPage_d = int(request.args.get('currentPage_d', 1))
     ost_d = (currentPage_d - 1) * pageSize_d
-    temp_details = db.session.query(TempDetails).offset(ost_d).limit(pageSize_d).all()
+    temp_bases = db.session.query(TempBase).offset(ost_d).limit(pageSize_d).first()
+    temp_details = db.session.query(TempDetails).offset(ost_d).limit(pageSize_d).first()
     totalSize_details = db.session.query(TempDetails).count()
     lastPage_details = math.ceil(totalSize_details / pageSize_d)
     prevPage_details = 1
@@ -231,12 +208,7 @@ def recruit():
     if currentPage_d < lastPage_details:
         nextPage_details = currentPage_d + 1
 
-    return render_template('recruit.html', params=locals())
-
-
-@app.route("/punch")
-def punch():
-    return render_template("punch_card.html")
+    return render_template('recruit_d.html', params=locals())
 
 
 @app.route('/attendance')
@@ -340,7 +312,7 @@ def notice():
 def show_notice():
     topic = request.form['topic']
     uname = request.form['uname']
-    date1 = time()
+    date1 = datetime.now()
     cot = request.form['content']
     notice = TrainningNotice()
     notice.topic = topic
@@ -376,4 +348,5 @@ def content2():
 
 
 if __name__ == '__main__':
-    manager.run()
+    app.run(debug=True, host='0.0.0.0')
+    # manager.run()
