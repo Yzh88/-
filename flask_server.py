@@ -1,5 +1,5 @@
+import time
 from datetime import datetime
-from time import time
 
 from flask import Flask, request, render_template, redirect, json
 from flask_sqlalchemy import SQLAlchemy
@@ -263,12 +263,23 @@ def staff_view():
         id = request.args.get('in')
         pers = PersBase.query.filter_by(num=id).first()
         pers.attendance.id = id
+        ti = time.strftime('%H-%M-%S', time.localtime())
+        list_time = ti.split('-')
+        h = int(list_time[0]) - 9
+        if h > 0:
+            pers.status = '迟到'
         pers.attendance.in_time = datetime.now()
+
 
     else:
         id = request.args.get('out')
         pers = PersBase.query.filter_by(num=id).first()
         pers.attendance.id = id
+        ti = time.strftime('%H-%M-%S', time.localtime())
+        list_time = ti.split('-')
+        h = int(list_time[0]) - 18
+        if h < 0:
+            pers.status = '早退'
         pers.attendance.out_time = datetime.now()
 
 
