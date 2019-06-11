@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘</title>
+    <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
+    <link rel="stylesheet" href="/static/css/recruit.css">
+    <link rel="stylesheet" href="/static/css/basic.css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/recruit.js"></script>
+
+    <style>
+        .th{
+            width:150px;
+        }
+        #exercise{
+
+
+        }
+
+    </style>
+</head>
+<body>
+<!--顶部背景-->
+<div id="top">
+    <!--顶部内容-->
+    <div id="top_content">
+        <img src="/static/images/e.jpg" class="top1">
+        <p class="top2"><b >企业管理系统</b></p>
+        <p class="top3"><a href="/main">回到首页</a></p>
+    </div>
+</div>
+
+<!-- 主体背景 -->
+<div id="box">
+    <!-- 主体部分 -->
+    <div id="main">
+        <!-- 左侧导航栏 -->
+        <form method="post" action="" enctype="">
+            <div id="left_view">
+                <ul class="left_view">
+                    <li class="left_li"><a>招聘管理</a>
+                        <ol class="view">
+                            <li><a href="/recruit">临时人员基本情况</a></li>
+                            <li><a href="/recruit_d">应聘人员详情表</a></li>
+                            <li><a href="/recruit">************</a></li>
+
+                        </ol>
+                    </li>
+                    <li class="left_li"><a>考勤管理</a>
+                        <ol class="view">
+                            <!--<li>考勤数据采集</li>-->
+                            <li onclick="show_inner1()"><a href="attendance.html">考勤记录</a></li>
+                            <li onclick="show_inner2()"><a href="attendance.html">出差管理</a></li>
+                            <li onclick="show_inner3()"><a href="attendance.html">休假管理</a></li>
+                            <li onclick="show_inner4()"><a href="attendance.html">加班管理</a></li>
+                        </ol>
+                    </li>
+                    <li class="left_li"><a href="notice.html">培训计划</a></li>
+                    <li class="left_li"><a href="main.html">其他查询</a></li>
+                </ul>
+            </div>
+        </form>
+
+        <!--右侧内容区-->
+
+        <div id="inner">
+            <table border="1px"  width="800px" cellspacing="0">
+                <tr>
+                <th class="th">序号</th>
+                <th class="th">{{params.temp_bases.num}}</th>
+                <th class="th">姓名</th>
+                <th class="th">{{params.temp_bases.name}}</th>
+            </tr>
+            <tr>
+                <th class="th">电话</th>
+                <th class="th">{{params.temp_bases.tel}}</th>
+                <th class="th">生日</th>
+                <th class="th">{{params.temp_bases.birthday}}</th>
+            </tr>
+            <tr>
+                <th class="th">性别</th>
+                <th class="th">{{params.temp_bases.sex}}</th>
+                <th class="th">籍贯</th>
+                <th class="th">{{params.temp_bases.native}}</th>
+            </tr>
+            <tr>
+                <th class="th">学历</th>
+                <th class="th">{{params.temp_bases.education}}</th>
+                <th class="th">工申请职位</th>
+                <th class="th">{{params.temp_bases.want_job}}</th>
+            </tr>
+            <tr>
+                <th class="th">期望薪资</th>
+                <th class="th">{{params.temp_bases.hope_wage}}</th>
+                <th class="th">申请时间</th>
+                <th class="th">{{params.temp_bases.apply_time}}</th>
+            </tr>
+            <tr>
+                <th class="th">审核状态</th>
+                <th class="th" colspan="3">
+                {% if params.temp_bases.status%}
+                    通过
+                    {%else%}
+                    未通过
+                    {%endif%}
+                </th>
+            </tr>
+                <tr>
+                <th class="th">兴趣爱好</th>
+                <th class="th">{{params.temp_details.hobby}}</th>
+                <th class="th">特长</th>
+                <th class="th">{{params.temp_details.speciality}}</th>
+            </tr>
+
+            <tr>
+                <th class="th">毕业院校</th>
+                <th class="th" colspan="3">{{params.temp_details.graduation}}</th>
+
+            </tr>
+        </table>
+                <div id="exercise">
+                    <h3>实习经历</h3>
+                    <p>
+                    <textarea cols="97" rows="11">{{params.temp_details.training}}</textarea>
+                    </p>
+                    <h3>培训经历</h3>
+                    <p>
+                        <textarea cols="97" rows="11">{{params.temp_details.career}}</textarea>
+                    </p>
+
+                        <tr>
+                            <th colspan="11">
+                                <a href="/recruit_d?currentPage_d=1">首页</a>
+                                <a href="/recruit_d?currentPage_d={{params.prevPage_details}}">上一页</a>
+                                <a href="/recruit_d?currentPage_d={{params.nextPage_details}}">下一页</a>
+                                <a href="/recruit_d?currentPage_d={{params.lastPage_details}}">尾页</a>
+                            </th>
+                        </tr>
+                </div>
+            </div>
+
+        <!-- 底部 -->
+        <div id="end">
+            <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
+        </div>
+
+</div>
+
+</body>
+</html>

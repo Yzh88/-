@@ -114,8 +114,8 @@ def show_first_page():
         password = request.form.get('password')
         users = db.session.query(EnterpriseDate).all()
         for user in users:
-            if username in user.registration_no:
-                if password in user.password:
+            if username == user.registration_no:
+                if password == user.password:
                     print(user.registration_no, user.password)
                     return render_template('main.html')
         else:
@@ -165,10 +165,16 @@ def recruit():
     if currentPage < lastPage_bases:
         nextPage_bases = currentPage + 1
 
-    pageSize_d = 5
+    return render_template('recruit.html',params=locals())
+
+@app.route('/recruit_d')
+@app.route('/recruit_d.html')
+def recruit_d():
+    pageSize_d = 1
     currentPage_d = int(request.args.get('currentPage_d', 1))
     ost_d = (currentPage_d - 1) * pageSize_d
-    temp_details = db.session.query(TempDetails).offset(ost_d).limit(pageSize_d).all()
+    temp_bases = db.session.query(TempBase).offset(ost_d).limit(pageSize_d).first()
+    temp_details = db.session.query(TempDetails).offset(ost_d).limit(pageSize_d).first()
     totalSize_details = db.session.query(TempDetails).count()
     lastPage_details = math.ceil(totalSize_details / pageSize_d)
     prevPage_details = 1
@@ -178,7 +184,8 @@ def recruit():
     if currentPage_d < lastPage_details:
         nextPage_details = currentPage_d + 1
 
-    return render_template('recruit.html',params=locals())
+    return render_template('recruit_d.html',params=locals())
+
 
 
 @app.route('/attendance')

@@ -22,7 +22,7 @@ body,html {
 #top_content{
     width:1200px;
     height:80px;
-    background:pink;
+    background:skyblue;
     position:relative;
     left:50%;
     margin-left:-600px;
@@ -78,7 +78,7 @@ body,html {
     width:200px;
     height:650px;
     text-align:center;
-    background:orange;
+    background:#f1f3f4;
     padding:0;
     position:absolute;
     top:20px;
@@ -106,12 +106,13 @@ body,html {
 
 /* 右侧内容区 */
 #inner{
-    height:500px;
+    height:650px;
     /*background:orange;*/
     position:absolute;
     top:20px;
     left:250px;
     text-align:center;
+    border:1px solid black;
 }
 /* 底部 */
 #end{
@@ -157,13 +158,20 @@ body,html {
     border:1px solid black;
 }
 #inner3{
+    margin-left:100px;
+    border:1px solid black;
+    background:#f1f3f4;
     margin-top:30px;
 }
 
 .a1>th{
     width:50px;
 }
-
+#exercise{
+    padding-left:0px;
+    text-decoration:none;
+    background:#f1f3f4;
+}
 
 
 
