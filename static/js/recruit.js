@@ -78,10 +78,12 @@ $(function (){
 
     $(".find_recruit").click(function (){
             $("#detail").css("display",'block');
+            $("#table3").css("display",'none');
 
     })
     $(".work_exercise").click(function (){
         $("#detail").css("display","none")
+        $("#table3").css("display","block")
 
     })
 })
