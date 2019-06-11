@@ -75,16 +75,13 @@ $(function (){
             $("#inner2").css("display","none");
         }
     })
-    var isrecruit = false;
+
     $(".find_recruit").click(function (){
-        isrecruit = !isrecruit;
-        if(isrecruit){
             $("#detail").css("display",'block');
-        }else{
-            $("#detail").css("display",'none');
-        }
+            $("#table3").css("display",'none');
     })
     $(".work_exercise").click(function (){
-        $("detail").css("display","none")
+        $("#detail").css("display","none")
+        $("#table3").css("display","block")
     })
 })

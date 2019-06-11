@@ -166,11 +166,16 @@ body,html {
 
 /*详情处理*/
 #detail{
-    height:1000px;
+    float:left
+    position:absolute;
+    margin-top:-20px;
+    margin-left:100px;
+    border:1px solid black;
 }
 
-
-
+#exercise h3{
+    margin-left:-700px;
+}
 
 
 
