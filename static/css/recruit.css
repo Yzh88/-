@@ -114,6 +114,20 @@ body,html {
     text-align:center;
     border:1px solid black;
 }
+th{
+    height:40px;
+}
+/* 右侧内容区 */
+#inner_content{
+    width:800px;
+    height:650px;
+    /*background:orange;*/
+    position:absolute;
+    top:20px;
+    left:250px;
+    text-align:center;
+
+}
 /* 底部 */
 #end{
     width:1200px;
@@ -146,7 +160,16 @@ body,html {
     width:950px;
 }
 #table1{
-    margin-left:100px;
+    padding:20px auto;
+    width:900px;
+    float:left;
+    margin-left:0px;
+}
+
+.page{
+    float:left;
+    margin-left:300px;
+    margin-top:20px;
 }
 
 /*默认公告区域*/

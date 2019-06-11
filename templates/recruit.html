@@ -38,7 +38,7 @@
                     </li>
                     <li class="left_li"><a>考勤管理</a>
                         <ol class="view">
-                            <!--<li>考勤数据采集</li>-->
+
                             <li onclick="show_inner1()"><a href="attendance.html">考勤记录</a></li>
                             <li onclick="show_inner2()"><a href="attendance.html">出差管理</a></li>
                             <li onclick="show_inner3()"><a href="attendance.html">休假管理</a></li>
@@ -52,7 +52,7 @@
         </form>
 
         <!--右侧内容区-->
-        <div id="inner">
+        <div id="inner_content">
             <table border="1px" id="table1" cellspacing="0">
                 <tr>
                     <th>序号</th>
@@ -74,7 +74,7 @@
                     <th class="name1">{{i.name}}</th>
                     <th>{{i.tel}}</th>
                     <th>{{i.birthday}}</th>
-                    <th>{{i.sex}}</th>-
+                    <th>{{i.sex}}</th>
                     <th>{{i.native}}</th>
                     <th>{{i.education}}</th>
                     <th>{{i.want_job}}</th>
@@ -84,33 +84,19 @@
                             是
                             {%else%}
                             否
-                            {%endif%}
-                     </th>
+                            {%endif%}</th>
                     <th><a href="/recruit_d?currentPage_d={{i.num}}">详情</a></th>
                 </tr>
                 {% endfor%}
 
 
-                <tr>
-
-                    <th colspan="11">
-                        <a href="/recruit?currentPage=1">首页</a>
-                        <a href="/recruit?currentPage={{params.prevPage_bases}}">上一页</a>
-                        <a href="/recruit?currentPage={{params.nextPage_bases}}">下一页</a>
-                        <a href="/recruit?currentPage={{params.lastPage_bases}}">尾页</a>
-                    </th>
-
-                    <!--<th colspan="6"><button onclick="dele3()">关闭</button></th>-->
-                </tr>
-
             </table>
-            <!--默认公告区域-->
-            <!--<div id="content">-->
-                <!--<div id="inner1">-->
-                    <!--<p>暂无查询记录</p>-->
-                <!--</div>-->
-
-            <!--</div>-->
+            <p class="page">
+                <a href="/recruit?currentPage=1">首页</a>
+                <a href="/recruit?currentPage={{params.prevPage_bases}}">上一页</a>
+                <a href="/recruit?currentPage={{params.nextPage_bases}}">下一页</a>
+                <a href="/recruit?currentPage={{params.lastPage_bases}}">尾页</a>
+             </p>
         </div>
 
         <!-- 底部 -->
