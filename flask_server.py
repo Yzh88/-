@@ -168,9 +168,13 @@ def show_first_page():
         password = request.form.get('password')
         users = db.session.query(EnterpriseDate).all()
         for user in users:
-            if username in user.registration_no:
-                if password in user.password:
-                    return redirect('/main')
+            if username == user.registration_no:
+                if password == user.password:
+                    id = db.session.query(func.max(TrainningNotice.notice_id)).first()[0]
+                    notice = TrainningNotice.query.filter_by(notice_id=id).first()
+                    id_first = db.session.query(func.min(TrainningNotice.notice_id)).first()[0]
+                    notice_first = TrainningNotice.query.filter_by(notice_id=id_first).first()
+                    return render_template("main.html", notice=notice,notice_first=notice_first)
         else:
             flag = 1
             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
@@ -256,7 +260,7 @@ def attendance():
     pageSize = 10
     currentPage = int(request.args.get('currentPage', 1))
     ost = (currentPage - 1) * pageSize
-    pers = TempBase.query.filter_by(status=True).offset(ost).limit(pageSize).all()
+    pers = TempBase.query.offset(ost).limit(pageSize).all()
     totalSize_bases = db.session.query(TempBase).count()
     lastPage_bases = math.ceil(totalSize_bases / pageSize)
     prevPage_bases = 1
@@ -266,6 +270,60 @@ def attendance():
     if currentPage < lastPage_bases:
         nextPage_bases = currentPage + 1
     return render_template('attendance.html', params=locals())
+
+
+# @app.route("/staff_view",methods=['POST'])
+# def staff_view():
+#     if request.form['sign'] == '1':
+#         num = request.form['num']
+#         pers = TempBase.query.filter_by(num=num).first()
+#         pers.attendance.id = num
+#         ti = time.strftime('%H-%M-%S', time.localtime())
+#         list_time = ti.split('-')
+#         h = int(list_time[0]) - 9
+#         if h > 0:
+#             pers.att = '迟到'
+#         pers.attendance.in_time = datetime.now()
+#         return "打卡成功"
+
+
+@app.route("/staff_view")
+def staff_view():
+    if 'in' in request.args:
+        num = request.args.get('in')
+        pers = TempBase.query.filter_by(num=num).first()
+        pers.att = '在岗'
+        atte = Attendance()
+        atte.per_id = num
+        atte.in_time = datetime.now()
+        atte.per_name = pers.name
+        atte.sign_data = datetime.date(datetime.now())
+        ti = time.strftime('%H-%M-%S', time.localtime())
+        list_time = ti.split('-')
+        h = int(list_time[0]) - 9
+        if h > 0:
+            atte.per_status = '迟到'
+        atte.per_status = '正常'
+        db.session.add(atte)
+        return json.dumps("签到成功")
+    else:
+        num = request.args.get('out')
+        pers = TempBase.query.filter_by(num=num).first()
+        atte = Attendance()
+        atte.per_id = num
+        atte.out_time = datetime.now()
+        atte.per_name = pers.name
+        atte.sign_data = datetime.date(datetime.now())
+        ti = time.strftime('%H-%M-%S', time.localtime())
+        list_time = ti.split('-')
+        h = int(list_time[0]) - 18
+        if h < 0:
+            atte.per_status = '早退'
+            pers.att = '不在岗'
+        else:
+            atte.per_status = '正常'
+        db.session.add(atte)
+        return json.dumps("签退成功")
 
 
 @app.route("/temporary", methods=["GET", "POST"])
@@ -291,86 +349,6 @@ def temporary_view():
     db.session.add(tb)
     db.session.add(td)
     return redirect('/staff-login')
-
-
-# @app.route("/staff_view")
-# def staff_view():
-#     if 'in' in request.args:
-#         num = request.args.get('in')
-#         pers = TempBase.query.filter_by(num=num).first()
-#         pers.att = '在岗'
-#         atte = Attendance()
-#         atte.per_id = num
-#         atte.in_time = datetime.now()
-#         atte.per_name = pers.name
-#         atte.sign_data = datetime.date(datetime.now())
-#         ti = time.strftime('%H-%M-%S', time.localtime())
-#         list_time = ti.split('-')
-#         h = int(list_time[0]) - 9
-#         if h > 0:
-#             atte.per_status = '迟到'
-#         atte.per_status = '正常'
-#         db.session.add(atte)
-#         return json.dumps("签到成功")
-#     else:
-#         num = request.args.get('out')
-#         pers = TempBase.query.filter_by(num=num).first()
-#         atte = Attendance()
-#         atte.per_id = num
-#         atte.out_time = datetime.now()
-#         atte.per_name = pers.name
-#         atte.sign_data = datetime.date(datetime.now())
-#         ti = time.strftime('%H-%M-%S', time.localtime())
-#         list_time = ti.split('-')
-#         h = int(list_time[0]) - 18
-#         if h < 0:
-#             atte.per_status = '早退'
-#             pers.att = '不在岗'
-#         else:
-#             atte.per_status = '正常'
-#         db.session.add(atte)
-#         return json.dumps("签退成功")
-
-@app.route("/staff_view")
-def staff_view():
-    if request.method == "GET":
-        return render_template("staff-view.html")
-    else:
-        if 'in' in request.args:
-            num = request.args.get('in')
-            pers = TempBase.query.filter_by(num=num).first()
-            pers.att = '在岗'
-            atte = Attendance()
-            atte.per_id = num
-            atte.in_time = datetime.now()
-            atte.per_name = pers.name
-            atte.sign_data = datetime.date(datetime.now())
-            ti = time.strftime('%H-%M-%S', time.localtime())
-            list_time = ti.split('-')
-            h = int(list_time[0]) - 9
-            if h > 0:
-                atte.per_status = '迟到'
-            atte.per_status = '正常'
-            db.session.add(atte)
-            return json.dumps("签到成功")
-        else:
-            num = request.args.get('out')
-            pers = TempBase.query.filter_by(num=num).first()
-            atte = Attendance()
-            atte.per_id = num
-            atte.out_time = datetime.now()
-            atte.per_name = pers.name
-            atte.sign_data = datetime.date(datetime.now())
-            ti = time.strftime('%H-%M-%S', time.localtime())
-            list_time = ti.split('-')
-            h = int(list_time[0]) - 18
-            if h < 0:
-                atte.per_status = '早退'
-                pers.att = '不在岗'
-            else:
-                atte.per_status = '正常'
-            db.session.add(atte)
-            return json.dumps("签退成功")
 
 
 @app.route("/staff-login", methods=["GET", "POST"])

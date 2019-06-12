@@ -1,14 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>考勤</title>
+    <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
+    <link rel="stylesheet" href="/static/css/recruit.css">
+    <link rel="stylesheet" href="/static/css/basic.css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/recruit.js"></script>
 </head>
 <body>
-<table border="1" width="500">
+<!--顶部背景-->
+<div id="top">
+    <!--顶部内容-->
+    <div id="top_content">
+        <img src="/static/images/e.jpg" class="top1">
+        <p class="top2"><b >企业管理系统</b></p>
+        <p class="top3"><a href="/main">回到首页</a></p>
+    </div>
+</div>
+
+<!-- 主体背景 -->
+<div id="box">
+    <!-- 主体部分 -->
+    <div id="main">
+        <!-- 左侧导航栏 -->
+        <form method="post" action="" enctype="">
+            <div id="left_view">
+                <ul class="left_view">
+                    <li class="left_li"><a>招聘管理</a>
+                        <ol class="view">
+                            <li><a href="/recruit">应聘信息</a></li>
+                            <li><a href="/recruit_d">应聘人员详情表</a></li>
+                        </ol>
+                    </li>
+                    <li class="left_li"><a>考勤管理</a>
+                        <ol class="view">
+
+                            <li onclick="show_inner1()"><a href="attendance.html">考勤记录</a></li>
+                        </ol>
+                    </li>
+                    <li class="left_li"><a href="notice.html">培训计划</a></li>
+                    <li class="left_li"><a href="main.html">其他查询</a></li>
+                </ul>
+            </div>
+        </form>
+
+        <!--右侧内容区-->
+        <div id="inner_content">
+
+        </div>
+            <table border="1" width="500">
     <tr>
         <th>工号</th>
         <th>姓名</th>
@@ -38,11 +80,14 @@
             <a href="/attendance?currentPage={{params.lastPage_bases}}">尾页</a>
         </td>
     </tr>
-    <tr>
-        <th colspan="6">
-            <button onclick="dele3()">关闭</button>
-        </th>
-    </tr>
 </table>
+        <!-- 底部 -->
+        <div id="end">
+            <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
+
