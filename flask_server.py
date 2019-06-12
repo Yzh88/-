@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456@127.0.0.1:3
 # 指定不需要信号追踪
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # 指定程序的启动模式为调试模式
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 # 指定执行完增删改之后的自动提交
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # 创建SQLAlchemy的实例
@@ -40,7 +40,7 @@ class TempBase(db.Model):  # 应聘人员 基本 信息
     native = db.Column(db.String(32))
     education = db.Column(db.String(32))
     want_job = db.Column(db.String(32))
-    hope_wage = db.Column(db.Float)
+    hope_wage = db.Column(db.String(10))
     apply_time = db.Column(db.DateTime)
     status = db.Column(db.Boolean, default=False)
     att = db.Column(db.String(32))
