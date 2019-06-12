@@ -114,6 +114,14 @@ body,html {
     text-align:center;
     border:1px solid black;
 }
+#add{
+    height:650px;
+    /*background:orange;*/
+    position:absolute;
+    margin-top:20px;
+    left:250px;
+    text-align:center;
+}
 th{
     height:40px;
 }

@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>考勤</title>
+    <title>招聘</title>
     <link rel="shortcut icon" href="/static/images/1.jpg" type="image/jpg">
     <link rel="stylesheet" href="/static/css/recruit.css">
     <link rel="stylesheet" href="/static/css/basic.css">
     <script src="/static/js/jquery-1.11.3.js"></script>
     <script src="/static/js/recruit.js"></script>
+
+    <style>
+        .th {
+            width: 150px;
+        }
+
+        #exercise {
+
+
+        }
+
+    </style>
 </head>
 <body>
 <!--顶部背景-->
@@ -15,7 +27,7 @@
     <!--顶部内容-->
     <div id="top_content">
         <img src="/static/images/e.jpg" class="top1">
-        <p class="top2"><b >企业管理系统</b></p>
+        <p class="top2"><b>企业管理系统</b></p>
         <p class="top3"><a href="/main">回到首页</a></p>
     </div>
 </div>
@@ -30,13 +42,14 @@
                 <ul class="left_view">
                     <li class="left_li"><a>招聘管理</a>
                         <ol class="view">
-                            <li><a href="/recruit">应聘信息</a></li>
+                            <li><a href="/recruit">临时人员基本情况</a></li>
                             <li><a href="/recruit_d">应聘人员详情表</a></li>
+
                         </ol>
                     </li>
                     <li class="left_li"><a>考勤管理</a>
                         <ol class="view">
-
+                            <!--<li>考勤数据采集</li>-->
                             <li onclick="show_inner1()"><a href="attendance.html">考勤记录</a></li>
                         </ol>
                     </li>
@@ -47,47 +60,41 @@
         </form>
 
         <!--右侧内容区-->
-        <div id="inner_content">
 
-        </div>
-            <table border="1" width="500">
-    <tr>
-        <th>工号</th>
-        <th>姓名</th>
-        <th>电话</th>
-        <th>生日</th>
-        <th>职位</th>
-        <th>操作</th>
-    </tr>
-    {% for p in params.pers %}
-    <tr>
-        <td>{{p.num}}</td>
-        <td>{{p.name}}</td>
-        <td>{{p.tel}}</td>
-        <td>{{p.birthday}}</td>
-        <td>{{p.want_job}}</td>
-        <td>
-            <a href="#">修改</a>
-            <a href="#">删除</a>
-        </td>
-    </tr>
-    {% endfor %}
-    <tr>
-        <td colspan="6">
-            <a href="/attendance?currentPage=1">首页</a>
-            <a href="/attendance?currentPage={{params.prevPage_bases}}">上一页</a>
-            <a href="/attendance?currentPage={{params.nextPage_bases}}">下一页</a>
-            <a href="/attendance?currentPage={{params.lastPage_bases}}">尾页</a>
-        </td>
-    </tr>
-</table>
-        <!-- 底部 -->
-        <div id="end">
-            <p>Copyright © 2001-2019 Weaver Network All Rights Reserved. 渝ICP备xxxxxxxx号</p>
+        <div id="add">
+            <table border="1px" width="800px" cellspacing="0">
+                <tr>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>生日</th>
+                    <th>职位</th>
+                    <th>操作</th>
+                </tr>
+                {% for p in params.pers %}
+                    <tr>
+                        <td>{{ p.num }}</td>
+                        <td>{{ p.name }}</td>
+                        <td>{{ p.tel }}</td>
+                        <td>{{ p.birthday }}</td>
+                        <td>{{ p.want_job }}</td>
+                        <td>
+                            <a href="#">修改</a>
+                            <a href="#">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="6">
+                        <a href="/attendance?currentPage=1">首页</a>
+                        <a href="/attendance?currentPage={{ params.prevPage_bases }}">上一页</a>
+                        <a href="/attendance?currentPage={{ params.nextPage_bases }}">下一页</a>
+                        <a href="/attendance?currentPage={{ params.lastPage_bases }}">尾页</a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-
 </body>
 </html>
-
