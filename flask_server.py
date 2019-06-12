@@ -43,6 +43,8 @@ class TempBase(db.Model):  # 应聘人员 基本 信息
     hope_wage = db.Column(db.Float)
     apply_time = db.Column(db.DateTime)
     status = db.Column(db.Boolean, default=False)
+    att = db.Column(db.String(32))
+    attendance = db.relationship('Attendance', backref="temp_base", lazy="dynamic")
 
 
 class TempDetails(db.Model):  # 应聘人员 详情 表
@@ -66,7 +68,6 @@ class PersBase(db.Model):  # 正式职员 基本 信息表
     job = db.Column(db.String(32))
     base_salary = db.Column(db.Float)
     performance = db.Column(db.Float)
-    attendance = db.relationship('Attendance', backref="course", lazy="dynamic")
 
 
 class PersDetails(db.Model):  # 职员 详细 信息表
@@ -120,7 +121,7 @@ class Attendance(db.Model):
     out_time = db.Column(db.DateTime)
     sign_data = db.Column(db.Date)
     per_status = db.Column(db.String(16))
-    per_id = db.Column(db.Integer, db.ForeignKey('pers_base.id'))
+    per_id = db.Column(db.Integer, db.ForeignKey('temp_base.num'))
 
 
 @app.route('/add_data')
@@ -169,7 +170,6 @@ def show_first_page():
         for user in users:
             if username in user.registration_no:
                 if password in user.password:
-                    print(user.registration_no, user.password)
                     return redirect('/main')
         else:
             flag = 1
@@ -268,32 +268,6 @@ def attendance():
     return render_template('attendance.html', params=locals())
 
 
-@app.route("/staff_view")
-def staff_view():
-    if 'in' in request.args:
-        id = request.args.get('in')
-        pers = PersBase.query.filter_by(num=id).first()
-        pers.attendance.id = id
-        ti = time.strftime('%H-%M-%S', time.localtime())
-        list_time = ti.split('-')
-        h = int(list_time[0]) - 9
-        if h > 0:
-            pers.status = '迟到'
-        pers.attendance.in_time = datetime.now()
-
-
-    else:
-        id = request.args.get('out')
-        pers = PersBase.query.filter_by(num=id).first()
-        pers.attendance.id = id
-        ti = time.strftime('%H-%M-%S', time.localtime())
-        list_time = ti.split('-')
-        h = int(list_time[0]) - 18
-        if h < 0:
-            pers.status = '早退'
-        pers.attendance.out_time = datetime.now()
-
-
 @app.route("/temporary", methods=["GET", "POST"])
 def temporary_view():
     if request.method == "GET":
@@ -319,6 +293,86 @@ def temporary_view():
     return redirect('/staff-login')
 
 
+# @app.route("/staff_view")
+# def staff_view():
+#     if 'in' in request.args:
+#         num = request.args.get('in')
+#         pers = TempBase.query.filter_by(num=num).first()
+#         pers.att = '在岗'
+#         atte = Attendance()
+#         atte.per_id = num
+#         atte.in_time = datetime.now()
+#         atte.per_name = pers.name
+#         atte.sign_data = datetime.date(datetime.now())
+#         ti = time.strftime('%H-%M-%S', time.localtime())
+#         list_time = ti.split('-')
+#         h = int(list_time[0]) - 9
+#         if h > 0:
+#             atte.per_status = '迟到'
+#         atte.per_status = '正常'
+#         db.session.add(atte)
+#         return json.dumps("签到成功")
+#     else:
+#         num = request.args.get('out')
+#         pers = TempBase.query.filter_by(num=num).first()
+#         atte = Attendance()
+#         atte.per_id = num
+#         atte.out_time = datetime.now()
+#         atte.per_name = pers.name
+#         atte.sign_data = datetime.date(datetime.now())
+#         ti = time.strftime('%H-%M-%S', time.localtime())
+#         list_time = ti.split('-')
+#         h = int(list_time[0]) - 18
+#         if h < 0:
+#             atte.per_status = '早退'
+#             pers.att = '不在岗'
+#         else:
+#             atte.per_status = '正常'
+#         db.session.add(atte)
+#         return json.dumps("签退成功")
+
+@app.route("/staff_view")
+def staff_view():
+    if request.method == "GET":
+        return render_template("staff-view.html")
+    else:
+        if 'in' in request.args:
+            num = request.args.get('in')
+            pers = TempBase.query.filter_by(num=num).first()
+            pers.att = '在岗'
+            atte = Attendance()
+            atte.per_id = num
+            atte.in_time = datetime.now()
+            atte.per_name = pers.name
+            atte.sign_data = datetime.date(datetime.now())
+            ti = time.strftime('%H-%M-%S', time.localtime())
+            list_time = ti.split('-')
+            h = int(list_time[0]) - 9
+            if h > 0:
+                atte.per_status = '迟到'
+            atte.per_status = '正常'
+            db.session.add(atte)
+            return json.dumps("签到成功")
+        else:
+            num = request.args.get('out')
+            pers = TempBase.query.filter_by(num=num).first()
+            atte = Attendance()
+            atte.per_id = num
+            atte.out_time = datetime.now()
+            atte.per_name = pers.name
+            atte.sign_data = datetime.date(datetime.now())
+            ti = time.strftime('%H-%M-%S', time.localtime())
+            list_time = ti.split('-')
+            h = int(list_time[0]) - 18
+            if h < 0:
+                atte.per_status = '早退'
+                pers.att = '不在岗'
+            else:
+                atte.per_status = '正常'
+            db.session.add(atte)
+            return json.dumps("签退成功")
+
+
 @app.route("/staff-login", methods=["GET", "POST"])
 def staff_login_view():
     if request.method == "GET":
@@ -326,7 +380,7 @@ def staff_login_view():
     else:
         tel = request.form["tel"]
         try:
-            pers = PersBase.query.filter_by(tel=tel).first()
+            pers = TempBase.query.filter_by(tel=tel).first()
             birthday = "".join(pers.birthday.split("-"))
             years = datetime.now().year
             age = years - int(birthday[:4])

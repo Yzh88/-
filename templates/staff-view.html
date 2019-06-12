@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../static/css/staff.css" type="text/css">
     <script src="/static/js/jquery-1.11.3.js"></script>
     <script src="/static/js/staff-view.js"></script>
+    <script>
+    </script>
 </head>
 <body>
 <div id="top">
@@ -41,7 +43,7 @@
             </tr>
             <tr>
                 <th>入职时间：</th>
-                <th colspan="2">xxxx-xx-xx</th>
+                <th colspan="2">{{ params.pers.apply_time }}</th>
             </tr>
         </table>
         <div id="sign_cont">
@@ -64,11 +66,11 @@
                 <span class="cont3">8:30 签到</span>
             </p>
         </div>
-        <div id="sign">
-            <button class="sign_in">签到</button>
-            <button class="sign_out">签退</button>
-            <input id="id" type="hidden" name="id" value="{{ params.pers.id }}">
-        </div>
+            <div id="sign">
+                <button class="sign_in">签到</button>
+                <button class="sign_out">签退</button>
+                <input id="num" type="hidden" name="num" value="{{ params.pers.num }}">
+            </div>
     </div>
 </div>
 <div id="bottom">
