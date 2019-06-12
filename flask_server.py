@@ -163,7 +163,6 @@ def show_first_page():
 
         return render_template('login.html', params=locals())
     else:
-
         username = request.form.get('registration_no')
         password = request.form.get('password')
         users = db.session.query(EnterpriseDate).all()
@@ -174,7 +173,7 @@ def show_first_page():
                     notice = TrainningNotice.query.filter_by(notice_id=id).first()
                     id_first = db.session.query(func.min(TrainningNotice.notice_id)).first()[0]
                     notice_first = TrainningNotice.query.filter_by(notice_id=id_first).first()
-                    return render_template("main.html", notice=notice,notice_first=notice_first)
+                    return render_template("main.html", notice=notice, notice_first=notice_first)
         else:
             flag = 1
             return render_template('login.html', params=locals())  # 账号不存在 render_template('/')
@@ -260,8 +259,8 @@ def attendance():
     pageSize = 10
     currentPage = int(request.args.get('currentPage', 1))
     ost = (currentPage - 1) * pageSize
-    pers = TempBase.query.offset(ost).limit(pageSize).all()
-    totalSize_bases = db.session.query(TempBase).count()
+    atts = Attendance.query.offset(ost).limit(pageSize).all()
+    totalSize_bases = db.session.query(Attendance).count()
     lastPage_bases = math.ceil(totalSize_bases / pageSize)
     prevPage_bases = 1
     if currentPage > 1:

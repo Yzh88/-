@@ -64,24 +64,19 @@
         <div id="add">
             <table border="1px" width="800px" cellspacing="0">
                 <tr>
-                    <th>工号</th>
                     <th>姓名</th>
-                    <th>电话</th>
-                    <th>生日</th>
-                    <th>职位</th>
-                    <th>操作</th>
+                    <th>日期</th>
+                    <th>签到时间</th>
+                    <th>签退时间</th>
+                    <th>状态</th>
                 </tr>
-                {% for p in params.pers %}
+                {% for att in params.atts %}
                     <tr>
-                        <td>{{ p.num }}</td>
-                        <td>{{ p.name }}</td>
-                        <td>{{ p.tel }}</td>
-                        <td>{{ p.birthday }}</td>
-                        <td>{{ p.want_job }}</td>
-                        <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
-                        </td>
+                        <td>{{ att.per_name }}</td>
+                        <td>{{ att.sign_data }}</td>
+                        <td>{{ att.in_time }}</td>
+                        <td>{{ att.out_time }}</td>
+                        <td>{{ att.per_status }}</td>
                     </tr>
                 {% endfor %}
                 <tr>
